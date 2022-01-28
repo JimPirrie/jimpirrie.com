@@ -1,0 +1,36 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 2
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: '/Users/jimpirrie/Web Projects/www.jimpirrie.com/code'
+        to: /home/vagrant/jimpirrie
+        type: nfs
+sites:
+    -
+        map: jimpirrie.local
+        to: /home/vagrant/jimpirrie/web
+        type: apache
+        php: "7.4"
+databases:
+    - homestead
+features:
+    -
+        mysql: true
+    -
+        mariadb: false
+    -
+        postgresql: false
+    -
+        ohmyzsh: false
+    -
+        webdriver: false
+name: jimpirrie
+hostname: jimpirrie
+networks:
+    - type: "private_network"
+      ip: "192.168.33.107"

@@ -1,0 +1,100 @@
+body{
+
+    background-color: darkslategray;
+    font-family: 'open sans',sans-serif;
+}
+
+h1{
+
+    padding-top: 40px;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+h2{
+
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.header{
+
+    background-color: white;
+    text-align: center;
+    padding: 30px 0 20px 0;
+    font-weight: 300;
+}
+
+.header a{
+
+    padding: 10px 20px;
+    transition: 0.5s;
+    color: darkslategray;
+}
+
+.header a:hover{
+
+    background-color: #F4F2ED;
+    text-decoration: none;
+}
+
+.sectionHeadStripe{
+
+    background-color: black;
+    color: white;
+    font-family: fredericka the great,fantasy;
+    font-size: 35px;
+    padding: 20px 0;
+}
+
+.pdc{
+
+    background-color: #D9E020;
+}
+
+.mcfc{
+
+    background-color: #8FFF59;
+}
+
+.footer{
+
+    background-color: lightslategray;
+    color: whitesmoke;
+}
+
+.footer a{
+
+    color: blue;
+}
+
+.base{
+
+    background-color: cadetblue;
+}
+
+.legal{
+
+    background-color: white;
+    padding: 7% 15%;
+}
+
+.legal p{
+
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.legal ul{
+
+    padding-left: 15%;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.notFound{
+
+    background-color: peru;
+}

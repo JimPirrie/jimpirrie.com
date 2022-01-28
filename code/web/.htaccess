@@ -1,0 +1,17 @@
+RewriteEngine on
+
+RewriteBase /
+
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+############ Rewrite to https unless development
+
+RewriteCond %{HTTP_HOST} !.local$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^_  - [L]
+
+RewriteRule !^index\.php$ /index.php?actualRequest=http%1://%{HTTP_HOST}%{REQUEST_URI} [L,QSA]
+
+
