@@ -27,14 +27,14 @@ h2{
     font-weight: 300;
 }
 
-.header a{
+.nav a{
 
     padding: 10px 20px;
     transition: 0.5s;
     color: darkslategray;
 }
 
-.header a:hover{
+.nav a:hover{
 
     background-color: #F4F2ED;
     text-decoration: none;
