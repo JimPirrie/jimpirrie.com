@@ -10,6 +10,7 @@ RewriteCond %{HTTP_HOST} !.local$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
+RewriteRule ^favicon  - [L]
 RewriteRule ^_  - [L]
 
 RewriteRule !^index\.php$ /index.php?actualRequest=http%1://%{HTTP_HOST}%{REQUEST_URI} [L,QSA]
