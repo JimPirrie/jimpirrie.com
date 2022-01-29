@@ -100,3 +100,23 @@ h2{
 
     background-color: peru;
 }
+
+.navbar-nav{
+
+    margin: auto;
+}
+
+.nav-link{
+
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: 0.5s;
+    color: darkslategray;
+}
+
+.nav-link:hover{
+
+    background-color: #F4F2ED;
+    text-decoration: none;
+}
+
