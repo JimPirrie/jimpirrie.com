@@ -1,3 +1,10 @@
+@font-face {
+
+    font-family: "fredericka the great";
+    src: url("/fonts/Fredericka_the_Great/FrederickatheGreat-Regular.ttf");
+}
+
+
 body{
 
     background-color: darkslategray;
