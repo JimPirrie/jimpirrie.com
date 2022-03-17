@@ -1,7 +1,5 @@
 <?php
 
-error_log(E_ERROR);
-
 require_once("init.php");
 
 $controller = str_replace("/", "", $_SERVER["REQUEST_URI"]);

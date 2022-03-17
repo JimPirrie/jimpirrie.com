@@ -21,23 +21,13 @@ h2{
 
 .header{
 
-    background-color: white;
-    text-align: center;
-    padding: 30px 0 20px 0;
+    background-color: #26619c;
     font-weight: 300;
 }
 
-.nav a{
+.nav-item a:hover{
 
-    padding: 10px 20px;
-    transition: 0.5s;
-    color: darkslategray;
-}
-
-.nav a:hover{
-
-    background-color: #F4F2ED;
-    text-decoration: none;
+    background-color: teal;
 }
 
 .sectionHeadStripe{

@@ -24,6 +24,7 @@
     <!-- JQuery and Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -44,9 +45,39 @@
 <body>
 <div class="header">
     <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="/"><img style="height: 100px;" src="/_images/JimPirrieCoaching_Logo_Large_white.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-right mt-md-5" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item dropdown" id="dropdownItem">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink">
+                            Dropdown link
+                        </a>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {#
         <div class="row d-none d-lg-block">
             <div class="col">
-                <a href="/"><img style="height: 100px;" src="/_images/logo.png"></a>
+                <a href="/"><img style="height: 100px;" src="/_images/JimPirrieCoaching_Logo_Large_white.png"></a>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -64,6 +95,7 @@
                 </div>
             </div>
         </nav>
+        #}
     </div>
 </div>
 {% block content %}{% endblock %}
@@ -85,5 +117,40 @@
         </div>
     </div>
 </div>
+<script>
+
+    $("#dropdownItem").mouseover(function(){
+
+        $("#dropdownItem").addClass("show");
+        $("#dropdownMenu").show("slow");
+    });
+
+    $("#dropdownItem").click(function(){
+
+        if($("#dropdownItem").hasClass("show")){
+
+            $("#dropdownItem").removeClass("show", 1000);
+            $("#dropdownMenu").hide("slow");
+        }
+        else{
+
+            $("#dropdownItem").addClass("show");
+            $("#dropdownMenu").show("slow");
+        }
+    });
+
+    $(".nav-item").hover(function(){
+
+        if($(this).hasClass("show")){
+
+            //do nothing
+        }
+        else{
+
+            $("#dropdownItem").removeClass("show", 1000);
+            $("#dropdownMenu").hide("slow");
+        }
+    });
+</script>
 </body>
 </html>
