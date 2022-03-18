@@ -53,49 +53,39 @@
             <div class="collapse navbar-collapse text-right mt-md-5" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown" id="dropdownItem">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink">
-                            Dropdown link
+                    <li class="nav-item dropdown" data-dropdownMenu="pdc" style="cursor: pointer;">
+                        <a class="nav-link dropdown-toggle">
+                            Professional Development Coaching
                         </a>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-menu" id="pdc">
+                            <a class="dropdown-item" href="#">FREE MINICOURSE</a>
+                            <a class="dropdown-item" href="#">About Professional development Coaching</a>
+                            <a class="dropdown-item" href="#">The "Professional Development Coaching" Blog</a>
+                            <a class="dropdown-item" href="https://www.linkedin.com/in/jimpirrie/"><i style="color: dodgerblue;" class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            <a class="dropdown-item" href="https://facebook.com/jimpirriemarketing"><i style="color: dodgerblue;" class="fa-brands fa-facebook-square"></i> Facebook @jimpirriecoaching</a>
+                            <a class="dropdown-item" href="https://www.youtube.com/channel/UCCy7hayx43k3m9Jc2x9BzWA"><i class="fa-brands fa-youtube" style="color: red;"></i> youtube/</a>
                         </div>
+                    </li>
+                    <li class="nav-item dropdown" data-dropdownMenu="mcc" style="cursor: pointer;">
+                        <a class="nav-link dropdown-toggle">
+                            Marketing Coaching for Coaches
+                        </a>
+                        <div class="dropdown-menu" id="mcc">
+                            <a class="dropdown-item" href="#">FREE MINICOURSE</a>
+                            <a class="dropdown-item" href="https://marketingcoachingforcoaches.jimpirrie.com">About Marketing Coaching for Coaches</a>
+                            <a class="dropdown-item" href="https://marketingcoachingforcoaches.jimpirrie.com">The "Marketing Coaching for Coaches" Blog</a>
+                            <a class="dropdown-item" href="https://facebook.com/jimpirriemarketing"><i style="color: dodgerblue;" class="fa-brands fa-facebook-square"></i> Facebook @jimpirriemarketing</a>
+                            <a class="dropdown-item" href="https://www.youtube.com/channel/UCVlI1_kXMneMOmO9SfbVLbA"><i class="fa-brands fa-youtube" style="color: red;"></i> youtube/</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Contact</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        {#
-        <div class="row d-none d-lg-block">
-            <div class="col">
-                <a href="/"><img style="height: 100px;" src="/_images/JimPirrieCoaching_Logo_Large_white.png"></a>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand d-lg-none" href="#">
-                <img style="height: 70px;" src="/_images/logo.png">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="https://www.professionaldevelopmentcoach.com">professional development coaching</a>
-                    <a class="nav-item nav-link" href="https://www.marketingcoachingforcoaches.com">marketing coaching for coaches</a>
-                    <a class="nav-item nav-link" href="/contact">contact</a>
-                </div>
-            </div>
-        </nav>
-        #}
     </div>
 </div>
 {% block content %}{% endblock %}
@@ -119,38 +109,33 @@
 </div>
 <script>
 
-    $("#dropdownItem").mouseover(function(){
+    $(".nav-item").mouseenter(function(e){
 
-        $("#dropdownItem").addClass("show");
-        $("#dropdownMenu").show("slow");
-    });
+        e.stopPropagation();
 
-    $("#dropdownItem").click(function(){
+        if($(this).hasClass("dropdown")){
 
-        if($("#dropdownItem").hasClass("show")){
+            var menuId = $(this).attr("data-dropdownMenu");
 
-            $("#dropdownItem").removeClass("show", 1000);
-            $("#dropdownMenu").hide("slow");
+            $("#" + menuId).show("slow");
+
+            $(document).click(function(){
+
+                $("#" + menuId).hide("slow");
+            });
         }
-        else{
 
-            $("#dropdownItem").addClass("show");
-            $("#dropdownMenu").show("slow");
-        }
-    });
+        $(".nav-item").each(function(){
 
-    $(".nav-item").hover(function(){
+            var thisId = $(this).attr("data-dropdownMenu");
 
-        if($(this).hasClass("show")){
+            if(thisId != menuId){
 
-            //do nothing
-        }
-        else{
+                $("#" + thisId).hide("slow");
+            }
+        });
+    })
 
-            $("#dropdownItem").removeClass("show", 1000);
-            $("#dropdownMenu").hide("slow");
-        }
-    });
 </script>
 </body>
 </html>

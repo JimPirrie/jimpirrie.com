@@ -19,6 +19,43 @@ h2{
     font-weight: 700;
 }
 
+a{
+
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+a:hover{
+
+    text-decoration: underline;
+    color: dodgerblue;
+}
+
+.fredericka{
+
+    font-family: fredericka the great,fantasy;
+}
+
+.fontSize-15{
+
+    font-size: 15px;
+}
+
+.fontSize-20{
+
+    font-size: 20px;
+}
+
+.fontSize-25{
+
+    font-size: 35px;
+}
+
+.fontSize-35{
+
+    font-size: 35px;
+}
+
 .header{
 
     background-color: #26619c;
@@ -110,3 +147,63 @@ h2{
     text-decoration: none;
 }
 
+#speechBubble_Coach{
+
+    background-image: url("/_images/speechBubble_Coach.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: ease-in-out 400ms;
+}
+
+#speechBubble_Coach:hover{
+
+    background-image: url("/_images/speechBubble_Coach_hover.png");
+}
+
+#speechBubble_Professional{
+
+    margin-top: 30%;
+    background-image: url("/_images/speechBubble_Professional.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: ease-in-out 400ms;
+}
+
+#speechBubble_Professional:hover{
+
+    background-image: url("/_images/speechBubble_Professional_hover.png");
+}
+
+.videoStripe{
+
+    background-color: #26619c;
+    color: white;
+}
+
+.box-16x9{
+
+    height: 0;
+    overflow: hidden;
+    padding-top: 56%;
+    background: darkslategray;
+    position: relative;
+    border: solid dodgerblue 10px;
+    color: whitesmoke;
+}
+
+.box-inner{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.box-content{
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
