@@ -45,7 +45,7 @@
 <body>
 <div class="header">
     <div class="container">
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="/"><img style="height: 100px;" src="/_images/JimPirrieCoaching_Logo_Large_white.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -86,6 +86,7 @@
                 </ul>
             </div>
         </nav>
+        <div style="background-color: lightgrey; height: 1px;"></div>
     </div>
 </div>
 {% block content %}{% endblock %}
@@ -109,20 +110,21 @@
 </div>
 <script>
 
+    // manage hover/mouse enter behaviour
+
     $(".nav-item").mouseenter(function(e){
 
         e.stopPropagation();
+
+        $(".dropped").removeClass("dropped");
 
         if($(this).hasClass("dropdown")){
 
             var menuId = $(this).attr("data-dropdownMenu");
 
             $("#" + menuId).show("slow");
+            $("#" + menuId).addClass("dropped");
 
-            $(document).click(function(){
-
-                $("#" + menuId).hide("slow");
-            });
         }
 
         $(".nav-item").each(function(){
@@ -134,7 +136,45 @@
                 $("#" + thisId).hide("slow");
             }
         });
-    })
+    });
+
+    //detect if nav-item has been clicked, rather than doc body
+
+    var clickedItem = 0;
+
+    $(".nav-item").click(function(){
+
+        clickedItem = this;
+
+    });
+
+    // manage click behaviour: if DD is showing, detect document click, otherwise detect item click
+
+    $(document).click(function(){
+
+        console.log(clickedItem);
+
+        if(clickedItem){
+
+            if($(".dropped")[0]) {
+
+                $(".dropdown-menu").hide("slow");
+                $(".dropped").removeClass("dropped");
+            }
+            else{
+
+                $(clickedItem).addClass("dropped");
+                $(clickedItem).children(".dropdown-menu").show("slow");
+            }
+        }
+        else{
+
+            $(".dropdown-menu").hide("slow");
+            $(".dropped").removeClass("dropped");
+        }
+
+        clickedItem = 0;
+    });
 
 </script>
 </body>
