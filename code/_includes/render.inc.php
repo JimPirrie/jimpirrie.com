@@ -2,7 +2,7 @@
 
 function renderPage($controller){
 
-    $data = [];
+    global $twigData;
 
     include(__DIR__."/../_controllers/{$controller}.php");
 
@@ -22,5 +22,5 @@ function renderPage($controller){
 
     // render template with our data
 
-    echo $tpl->render($data);
+    echo $tpl->render($twigData);
 }

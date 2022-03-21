@@ -18,6 +18,9 @@ else{
     $controller = "home";
 }
 
+$twigData["seo"]["canonical"] = "";
+$twigData["seo"]["fbAppId"] = "";
+
 renderPage($controller);
 
 
