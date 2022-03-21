@@ -2,21 +2,33 @@
 
 require_once("init.php");
 
-$controller = str_replace("/", "", $_SERVER["REQUEST_URI"]);
+if(strpos(" ".$_SERVER["HTTP_HOST"], "professionaldevelopmentcoach")){
 
-if($controller){
+    $controller = "coaching";
+}
+elseif(strpos(" ".$_SERVER["HTTP_HOST"], "marketingcoachingforcoaches")){
 
-    $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
-
-    if(!file_exists($path)){
-
-        $controller = "not-found";
-    }
+    $controller = "marketing";
 }
 else{
 
-    $controller = "home";
+    $controller = str_replace("/", "", $_SERVER["REQUEST_URI"]);
+
+    if($controller){
+
+        $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
+
+        if(!file_exists($path)){
+
+            $controller = "not-found";
+        }
+    }
+    else{
+
+        $controller = "home";
+    }
 }
+
 
 $twigData["seo"]["canonical"] = "";
 $twigData["seo"]["fbAppId"] = "";
