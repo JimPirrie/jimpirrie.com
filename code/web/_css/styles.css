@@ -31,6 +31,11 @@ a:hover{
     color: dodgerblue;
 }
 
+.em{
+
+    font-style: italic;
+}
+
 .fredericka{
 
     font-family: fredericka the great,fantasy;
@@ -48,7 +53,7 @@ a:hover{
 
 .fontSize-25{
 
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .fontSize-35{
