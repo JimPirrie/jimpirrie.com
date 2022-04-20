@@ -14,6 +14,10 @@ else{
 
     $controller = str_replace("/", "", $_SERVER["REQUEST_URI"]);
 
+    $parts = explode("?", $controller);
+
+    $controller = $parts[0];
+
     if($controller){
 
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
