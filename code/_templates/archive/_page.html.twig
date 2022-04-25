@@ -55,35 +55,50 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand p-0" href="/"><img style="height: 120px;" src="/_images/Jim-Pirrie-black-high-res.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse mt-md-5" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto mr-0">
-                <li class="nav-item {{ active.home }} text-center">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item {{ active.coaching }} text-center">
-                    <a class="nav-link" href="/coaching">Professional Development Coaching</a>
-                </li>
-                <li class="nav-item {{ active.workshops }} text-center">
-                    <a class="nav-link" href="/workshops">Professional Development Workshops</a>
-                </li>
-                <li class="nav-item {{ active.marketing }} text-center">
-                    <a class="nav-link" href="/marketing">Marketing Coaching for Coaches</a>
-                </li>
-                <li class="nav-item {{ active.clients }} text-center">
-                    <a class="nav-link" href="/clients">Clients</a>
-                </li>
-                <li class="nav-item {{ active.contact }} text-center">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div style="background-color: lightgrey; height: 1px;"></div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="/"><img style="height: 100px;" src="/_images/JimPirrieCoaching_Logo_Large_white.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-right mt-md-5" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item {{ active.home }}">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown {{ active.coaching }}" data-dropdownMenu="pdc" style="cursor: pointer;">
+                        <a class="nav-link dropdown-toggle">
+                            Professional Development Coaching
+                        </a>
+                        <div class="dropdown-menu" id="pdc">
+                            <a class="dropdown-item" href="https://coaching.jimpirrie.com/minicourse/xxxxx/">FREE MINICOURSE</a>
+                            <a class="dropdown-item {{ active.coaching }}" href="/coaching">About Professional development Coaching</a>
+                            <a class="dropdown-item" href="https://coaching.jimpirrie.com/">The "Professional Development Coaching" Blog</a>
+                            <a class="dropdown-item" href="https://www.linkedin.com/in/jimpirrie/"><i style="color: dodgerblue;" class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            <a class="dropdown-item" href="https://facebook.com/jimpirriemarketing"><i style="color: dodgerblue;" class="fa-brands fa-facebook-square"></i> Facebook @jimpirriecoaching</a>
+                            <a class="dropdown-item" href="https://www.youtube.com/channel/UCCy7hayx43k3m9Jc2x9BzWA"><i class="fa-brands fa-youtube" style="color: red;"></i> youtube/</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown {{ active.marketing }}" data-dropdownMenu="mcc" style="cursor: pointer;">
+                        <a class="nav-link dropdown-toggle">
+                            Marketing Coaching for Coaches
+                        </a>
+                        <div class="dropdown-menu" id="mcc">
+                            <a class="dropdown-item" href="https://marketing.jimpirrie.com/minicourse/xxxxx/">FREE MINICOURSE</a>
+                            <a class="dropdown-item {{ active.marketing }}" href="/marketing">About Marketing Coaching for Coaches</a>
+                            <a class="dropdown-item" href="https://marketing.jimpirrie.com">The "Marketing Coaching for Coaches" Blog</a>
+                            <a class="dropdown-item" href="https://facebook.com/jimpirriemarketing"><i style="color: dodgerblue;" class="fa-brands fa-facebook-square"></i> Facebook @jimpirriemarketing</a>
+                            <a class="dropdown-item" href="https://www.youtube.com/channel/UCVlI1_kXMneMOmO9SfbVLbA"><i class="fa-brands fa-youtube" style="color: red;"></i> youtube/</a>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ active.contact }}">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div style="background-color: lightgrey; height: 1px;"></div>
+    </div>
 </div>
 {% block content %}{% endblock %}
 <div class="footer">

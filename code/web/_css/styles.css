@@ -63,13 +63,76 @@ a:hover{
 
 .header{
 
-    background-color: #26619c;
+    background-color: white;
     font-weight: 300;
+}
+
+/********************** Container Classes */
+
+.content{
+
+    background-color: white;
+    color: darkslategray;
+}
+
+/********************** Nav Bar */
+
+.nav-item a{
+
+    color: darkslategray;
 }
 
 .nav-item a:hover{
 
     background-color: teal;
+}
+
+navbar-nav{
+
+    margin: auto;
+}
+
+.nav-link{
+
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: 0.5s;
+    color: darkslategray;
+}
+
+.nav-link:hover{
+
+    background-color: #F4F2ED;
+    text-decoration: none;
+}
+
+/******************** Carousel */
+
+.carousel-item{
+
+    height: 300px;
+    background-position: center;
+}
+
+.carousel button{
+
+    background-color: rgba(0, 0, 0, 40%);
+    border: none;
+    opacity: 100;
+    width: 50px;
+}
+
+.carousel button:hover{
+
+    background-color: rgba(0, 0, 0, 80%);
+}
+
+.carousel-caption-content{
+
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: auto;
+    max-width: 500px;
 }
 
 .sectionHeadStripe{
@@ -106,7 +169,7 @@ a:hover{
 
 .base{
 
-    background-color: cadetblue;
+    background-color: white;
 }
 
 .legal{
@@ -131,25 +194,6 @@ a:hover{
 .notFound{
 
     background-color: peru;
-}
-
-.navbar-nav{
-
-    margin: auto;
-}
-
-.nav-link{
-
-    padding: 10px 20px;
-    margin: 0 10px;
-    transition: 0.5s;
-    color: darkslategray;
-}
-
-.nav-link:hover{
-
-    background-color: #F4F2ED;
-    text-decoration: none;
 }
 
 #speechBubble_Coach{
@@ -181,7 +225,7 @@ a:hover{
 
 .videoStripe{
 
-    background-color: #26619c;
+    background-color: white;
     color: white;
 }
 
@@ -192,7 +236,7 @@ a:hover{
     padding-top: 56%;
     background: darkslategray;
     position: relative;
-    border: solid dodgerblue 10px;
+    border: solid dodgerblue 5px;
     color: whitesmoke;
 }
 
@@ -211,4 +255,22 @@ a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.page-banner{
+
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+}
+
+.page-banner-content{
+
+    margin: auto;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    margin-top: 75px;
+    padding-bottom: 40px;
 }
