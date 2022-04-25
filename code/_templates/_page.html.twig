@@ -54,37 +54,34 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55WM35W"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand p-0" href="/"><img style="height: 120px;" src="/_images/Jim-Pirrie-black-high-res.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse mt-md-5" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto mr-0">
-                <li class="nav-item {{ active.home }} text-center">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item {{ active.coaching }} text-center">
-                    <a class="nav-link" href="/coaching">Professional Development Coaching</a>
-                </li>
-                <li class="nav-item {{ active.workshops }} text-center">
-                    <a class="nav-link" href="/workshops">Professional Development Workshops</a>
-                </li>
-                <li class="nav-item {{ active.marketing }} text-center">
-                    <a class="nav-link" href="/marketing">Marketing Coaching for Coaches</a>
-                </li>
-                <li class="nav-item {{ active.clients }} text-center">
-                    <a class="nav-link" href="/clients">Clients</a>
-                </li>
-                <li class="nav-item {{ active.contact }} text-center">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div style="background-color: lightgrey; height: 1px;"></div>
-</div>
+<nav id="nav" class="header navbar navbar-expand-lg navbar-light sticky-top">
+    <a class="navbar-brand p-0" href="/"><img id="logo" style="height: 120px;" src="/_images/Jim-Pirrie-black-high-res.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mt-md-5" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto mr-0">
+            <li class="nav-item {{ active.home }} text-center">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item {{ active.coaching }} text-center">
+                <a class="nav-link" href="/coaching">Professional Development Coaching</a>
+            </li>
+            <li class="nav-item {{ active.workshops }} text-center">
+                <a class="nav-link" href="/workshops">Professional Development Workshops</a>
+            </li>
+            <li class="nav-item {{ active.marketing }} text-center">
+                <a class="nav-link" href="/marketing">Marketing Coaching for Coaches</a>
+            </li>
+            <li class="nav-item {{ active.clients }} text-center">
+                <a class="nav-link" href="/clients">Clients</a>
+            </li>
+            <li class="nav-item {{ active.contact }} text-center">
+                <a class="nav-link" href="/contact">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 {% block content %}{% endblock %}
 <div class="footer">
     <div class="container">
@@ -106,72 +103,31 @@
 </div>
 <script>
 
-    // manage hover/mouse enter behaviour
+    var height;
 
-    $(".nav-item").mouseenter(function(e){
+    $(document).scroll(function(){
 
-        e.stopPropagation();
+        var top = $(window).scrollTop();
 
-        $(".dropped").removeClass("dropped");
+        console.log("TOP: " + top);
 
-        if($(this).hasClass("dropdown")){
+        height = 120 - top;
 
-            var menuId = $(this).attr("data-dropdownMenu");
+        console.log("HEIGHT: " + height);
 
-            $("#" + menuId).show("slow");
-            $("#" + menuId).addClass("dropped");
+        // max 120px when stop = 0, min 50px when top > 100
 
-        }
+        if(height > 50) {
 
-        $(".nav-item").each(function(){
+            //console.log(height);
 
-            var thisId = $(this).attr("data-dropdownMenu");
-
-            if(thisId != menuId){
-
-                $("#" + thisId).hide("slow");
-            }
-        });
-    });
-
-    //detect if nav-item has been clicked, rather than doc body
-
-    var clickedItem = 0;
-
-    $(".nav-item").click(function(){
-
-        clickedItem = this;
-
-    });
-
-    // manage click behaviour: if DD is showing, detect document click, otherwise detect item click
-
-    $(document).click(function(){
-
-        console.log(clickedItem);
-
-        if(clickedItem){
-
-            if($(".dropped")[0]) {
-
-                $(".dropdown-menu").hide("slow");
-                $(".dropped").removeClass("dropped");
-            }
-            else{
-
-                $(clickedItem).addClass("dropped");
-                $(clickedItem).children(".dropdown-menu").show("slow");
-            }
+            $("#logo").css("height", height + "px");
         }
         else{
 
-            $(".dropdown-menu").hide("slow");
-            $(".dropped").removeClass("dropped");
+            $("#logo").css("height", "50px");
         }
-
-        clickedItem = 0;
     });
-
 </script>
 </body>
 </html>
