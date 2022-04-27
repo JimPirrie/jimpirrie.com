@@ -123,6 +123,11 @@ navbar-nav{
     background-repeat: no-repeat;
 }
 
+.carousel-indicators{
+
+    cursor: pointer;
+}
+
 .carousel button{
 
     background-color: rgba(0, 0, 0, 40%);
