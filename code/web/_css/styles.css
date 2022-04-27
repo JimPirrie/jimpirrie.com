@@ -61,10 +61,17 @@ a:hover{
     font-size: 35px;
 }
 
-.header{
+.navbar{
 
     background-color: rgba(245, 245, 245, 0.8);
     font-weight: 300;
+    height: 120px;
+}
+
+.header{
+
+    background-color: rgba(245, 245, 245, 1);
+    height: 140px;
 }
 
 /********************** Container Classes */
