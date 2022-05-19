@@ -288,3 +288,83 @@ navbar-nav{
     margin-top: 75px;
     padding-bottom: 40px;
 }
+
+.course_summary_box{
+
+    border: solid gray 1px;
+    border-radius: 5px;
+    height: 550px;
+}
+
+.course_summary_image_cell{
+
+    height: 180px;
+    padding: 20px;
+}
+
+.course_summary_title_cell{
+
+    padding-right: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.course_summary_lead_cell{
+
+    font-weight: normal;
+    padding: 0 20px 20px 20px;
+    vertical-align: top;
+}
+
+.course_summary_copy_cell{
+
+    font-weight: lighter;
+    font-style: italic;
+    padding: 0 20px 0 20px;
+    vertical-align: top;
+}
+
+.course_summary_link_cell{
+
+    font-weight: lighter;
+    padding: 0 20px 20px 20px;
+    text-align: right;
+}
+
+/* X-Small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+    .course_summary_box{
+        height: 600px;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+    .course_summary_box{
+        height: 650px;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+    .course_summary_box{
+        height: 550px;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) {
+
+}
