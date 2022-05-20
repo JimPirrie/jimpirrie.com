@@ -331,6 +331,38 @@ navbar-nav{
     text-align: right;
 }
 
+.workshops_bar_item{
+
+    padding: 20%;
+    border-radius: 50%;
+    transition: padding 0.2s;
+}
+
+.workshops_bar_item_active{
+
+    padding: 0;
+    border-radius: 50%;
+    background-color: whitesmoke;
+}
+
+.workshops_bar_item:hover{
+
+    padding: 0;
+    background-color: whitesmoke;
+}
+
+.workshop_page_lead{
+
+    font-size: 20px;
+}
+
+.workshop_page_summary{
+
+    font-size: 20px;
+    font-weight: 200;
+    font-style: italic;
+}
+
 /* X-Small devices (portrait phones, less than 576px) */
 /* No media query for `xs` since this is the default in Bootstrap */
 
