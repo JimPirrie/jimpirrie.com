@@ -17,7 +17,15 @@ function renderPage($controller){
     $twig->addExtension(new \Twig\Extension\DebugExtension());
 
     // load template
-    $template = "{$controller}.html.twig";
+
+    if($twigData["template"]){
+
+        $template = $twigData["template"];
+    }
+    else{
+
+        $template = "{$controller}.html.twig";
+    }
     $tpl = $twig->load($template);
 
     // render template with our data
