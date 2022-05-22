@@ -61,25 +61,6 @@ a:hover{
     font-size: 35px;
 }
 
-.navbar{
-
-    background-color: rgba(245, 245, 245, 0.9);
-    font-weight: 300;
-    height: 120px;
-}
-
-#navbarNavDropdown.show{
-
-    background-color: rgba(0, 0, 0, 0.9);
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#navbarNavDropdown.show a{
-
-    color: white;
-}
-
 
 .header{
 
@@ -97,13 +78,33 @@ a:hover{
 
 /********************** Nav Bar */
 
+.navbar{
+
+    background-color: rgba(245, 245, 245, 0.8);
+    font-weight: 300;
+    height: 120px;
+}
+
+#navbarNavDropdown{
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(100, 100, 100, 0.9);
+}
+
+#navbarNavDropdown .active>.nav-link{
+
+    font-weight: 500!important;
+}
+
 .nav-item a{
 
-    color: darkslategray;
+    color: whitesmoke!important;
 }
 
 .nav-item a:hover{
 
+    color: white!important;
     background-color: teal;
 }
 
@@ -112,6 +113,7 @@ navbar-nav{
     margin: auto;
 }
 
+/*
 .nav-link{
 
     padding: 10px 20px;
@@ -125,6 +127,8 @@ navbar-nav{
     background-color: #F4F2ED;
     text-decoration: none;
 }
+
+ */
 
 /******************** Carousel */
 
@@ -395,6 +399,23 @@ navbar-nav{
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
+
+    #navbarNavDropdown{
+
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: rgba(100, 100, 100, 0);
+    }
+
+    .nav-item a{
+
+        color: darkslategray!important;
+    }
+
+    .nav-item a:hover{
+
+        background-color: teal;
+    }
 
     .course_summary_box{
         height: 650px;
