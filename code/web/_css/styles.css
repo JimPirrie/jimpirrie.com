@@ -351,7 +351,7 @@ a:hover{
 
     padding: 10%;
     border-radius: 50%;
-    transition: padding 0.2s;
+    transition: padding 1s,background 0.5s;
 }
 
 .workshops_bar_item_active{
