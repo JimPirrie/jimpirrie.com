@@ -320,6 +320,11 @@ a:hover{
     font-weight: bold;
 }
 
+.course_summary_title_cell a{
+
+    color: midnightblue;
+}
+
 .course_summary_lead_cell{
 
     font-weight: normal;
