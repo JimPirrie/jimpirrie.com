@@ -221,31 +221,31 @@ a:hover{
     background-color: peru;
 }
 
-#speechBubble_Coach{
-
-    background-image: url("/_images/speechBubble_Coach.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    transition: ease-in-out 400ms;
-}
-
-#speechBubble_Coach:hover{
-
-    background-image: url("/_images/speechBubble_Coach_hover.png");
-}
-
-#speechBubble_Professional{
+#speechBubble_Coaching{
 
     margin-top: 30%;
-    background-image: url("/_images/speechBubble_Professional.png");
+    background-image: url("/_images/speechBubble_Coaching.png");
     background-repeat: no-repeat;
     background-size: contain;
     transition: ease-in-out 400ms;
 }
 
-#speechBubble_Professional:hover{
+#speechBubble_Coaching:hover{
 
-    background-image: url("/_images/speechBubble_Professional_hover.png");
+    background-image: url("/_images/speechBubble_Coaching_hover.png");
+}
+
+#speechBubble_Training{
+
+    background-image: url("/_images/speechBubble_Training.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: ease-in-out 400ms;
+}
+
+#speechBubble_Training:hover{
+
+    background-image: url("/_images/speechBubble_Training_hover.png");
 }
 
 .videoStripe{
