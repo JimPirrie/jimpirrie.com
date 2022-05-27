@@ -22,13 +22,12 @@ h2{
 a{
 
     text-decoration: none;
-    color: dodgerblue;
+    color: blue;
 }
 
 a:hover{
 
     text-decoration: underline;
-    color: dodgerblue;
 }
 
 .em{
@@ -66,6 +65,17 @@ a:hover{
 
     background-color: rgba(245, 245, 245, 1);
     height: 140px;
+}
+
+.modalTriggerSpan{
+
+    cursor: pointer;
+    color: blue;
+}
+
+.modalTriggerSpan:hover{
+
+    text-decoration: underline;
 }
 
 /********************** Container Classes */
@@ -221,9 +231,23 @@ a:hover{
     background-color: peru;
 }
 
-#speechBubble_Coaching{
+#speechBubble_Online{
 
     margin-top: 10%;
+    background-image: url("/_images/speechBubble_Online.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: ease-in-out 400ms;
+}
+
+#speechBubble_Online:hover{
+
+    background-image: url("/_images/speechBubble_Online_hover.png");
+}
+
+#speechBubble_Coaching{
+
     background-image: url("/_images/speechBubble_Coaching.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -237,6 +261,7 @@ a:hover{
 
 #speechBubble_Training{
 
+    margin-top: -20px;
     background-image: url("/_images/speechBubble_Training.png");
     background-repeat: no-repeat;
     background-size: contain;
