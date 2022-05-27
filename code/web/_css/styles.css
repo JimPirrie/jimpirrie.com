@@ -243,7 +243,7 @@ a:hover{
 
 #speechBubble_Online:hover{
 
-    background-image: url("/_images/speechBubble_Online_hover.png");
+    background-image: url("/_images/speechBubble_Online_Hover.png");
 }
 
 #speechBubble_Coaching{
@@ -256,7 +256,7 @@ a:hover{
 
 #speechBubble_Coaching:hover{
 
-    background-image: url("/_images/speechBubble_Coaching_hover.png");
+    background-image: url("/_images/speechBubble_Coaching_Hover.png");
 }
 
 #speechBubble_Training{
@@ -270,7 +270,7 @@ a:hover{
 
 #speechBubble_Training:hover{
 
-    background-image: url("/_images/speechBubble_Training_hover.png");
+    background-image: url("/_images/speechBubble_Training_Hover.png");
 }
 
 .videoStripe{
