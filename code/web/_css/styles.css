@@ -374,6 +374,7 @@ a:hover{
 
 .workshops_bar_item{
 
+
     padding: 10%;
     border-radius: 50%;
     transition: padding 1s,background 0.5s;
@@ -402,6 +403,14 @@ a:hover{
     font-size: 20px;
     font-weight: 200;
     font-style: italic;
+}
+
+.blog-sidebar{
+
+    border: solid gray 1px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: whitesmoke;
 }
 
 /* X-Small devices (portrait phones, less than 576px) */

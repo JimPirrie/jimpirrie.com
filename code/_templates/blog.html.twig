@@ -1,0 +1,19 @@
+{% extends "_page.html.twig" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if blogPostId %}
+                    <a href="/blog">Blog Home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ seo.title }}</strong>
+                {% else %}
+                    <strong>Blog Home</strong>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% include(contentTemplate) %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

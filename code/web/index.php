@@ -20,6 +20,11 @@ else{
 
     if($controller){
 
+        if(strpos(" ".$controller, "blog")){
+
+            $controller = "blog";
+        }
+
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
 
         if(!file_exists($path)){

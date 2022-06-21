@@ -18,7 +18,7 @@ function renderPage($controller){
 
     // load template
 
-    if($twigData["template"]){
+    if(isset($twigData["template"])){
 
         $template = $twigData["template"];
     }
