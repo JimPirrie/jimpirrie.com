@@ -18,7 +18,6 @@ if(sizeof($parts) > 3) {
 
 include(__DIR__."/../_templates/blog/_postMetadata.php"); // $posts array is here. Body content is in twig template
 
-/*
 if($blogPostId){
 
     if(!$posts[$blogPostId]){
@@ -53,9 +52,6 @@ else{
 
     $contentTemplate = "blog-home.html.twig";
 }
-*/
-
-$contentTemplate = "post-1.html.twig";
 
 $twigData["blogPostId"] = $blogPostId;
 $twigData["posts"] = $posts;
