@@ -24,13 +24,13 @@ if($blogPostId){
 
         // post not found - redirect to blog home page
 
-        header("Location: /blog/");
+        header("Location: /blog/", true, 404);
         exit;
     }
     elseif($blogPostSlug != $posts[$blogPostId]["slug"]){
 
         // post found, but no slug - redirect to show it
-        header("Location: /blog/{$blogPostId}/{$posts[$blogPostId]["slug"]}");
+        header("Location: /blog/{$blogPostId}/{$posts[$blogPostId]["slug"]}", true, 301);
         exit;
     }
 
