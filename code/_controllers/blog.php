@@ -64,6 +64,6 @@ $twigData["contentTemplate"] = "blog/{$contentTemplate}";
 $twigData["seo"]["title"] = $seoTitle;
 $twigData["seo"]["description"] = $seoDescription;
 $twigData["seo"]["image"] = "https://www.jimpirrie.com/_images/{$seoImage}";
-$twigData["seo"]["canonical"] = "https://www.jimpirrie.com/{$seoUrl}";
+$twigData["seo"]["canonical"] = "https://www.jimpirrie.com/blog/{$seoUrl}";
 
 $twigData["active"]["blog"] = "active";
