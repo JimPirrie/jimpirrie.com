@@ -20,6 +20,7 @@ include(__DIR__."/../_templates/blog/_postMetadata.php"); // $posts array is her
 
 if($blogPostId){
 
+    /*
     if(!$posts[$blogPostId]){
 
         // post not found - redirect to blog home page
@@ -40,6 +41,7 @@ if($blogPostId){
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
     $contentTemplate = "post-{$blogPostId}.html.twig";
+    */
 }
 else{
 
