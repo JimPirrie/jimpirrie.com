@@ -42,6 +42,8 @@ else{
 $twigData["seo"]["canonical"] = "";
 $twigData["seo"]["fbAppId"] = "";
 
+print_r(http_response_code());
+
 renderPage($controller);
 
 
