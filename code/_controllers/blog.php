@@ -55,6 +55,8 @@ else{
 }
 */
 
+$contentTemplate = "post-1.html.twig";
+
 $twigData["blogPostId"] = $blogPostId;
 $twigData["posts"] = $posts;
 $twigData["contentTemplate"] = "blog/{$contentTemplate}";
