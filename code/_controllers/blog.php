@@ -35,13 +35,14 @@ if($blogPostId){
         exit;
     }
 
+    */
+
     $seoTitle = $posts[$blogPostId]["seoTitle"];
     $seoDescription = $posts[$blogPostId]["seoDescription"];
     $seoImage = $posts[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
     $contentTemplate = "post-{$blogPostId}.html.twig";
-    */
 }
 else{
 
@@ -49,7 +50,7 @@ else{
 
     $seoTitle = "Jim Pirrie's Blog";
     $seoDescription = "DESCRIPTION";
-    $seoImage = "t-shaped-professions.png";
+    $seoImage = "t-shaped-professional.png";
     $seoUrl = "/blog/";
 
     $contentTemplate = "blog-home.html.twig";
