@@ -37,8 +37,8 @@ if($blogPostId){
 
     */
 
-    /*
     $seoTitle = $posts[$blogPostId]["seoTitle"];
+    /*
     $seoDescription = $posts[$blogPostId]["seoDescription"];
     $seoImage = $posts[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
