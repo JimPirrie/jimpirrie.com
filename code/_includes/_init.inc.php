@@ -1,6 +1,6 @@
 <?php
 
-//error_log(E_ERROR);
+error_reporting(E_ERROR);
 
 require_once(__DIR__."/../vendor/autoload.php");
 require_once("env.inc.php");
@@ -15,5 +15,3 @@ $db = new mysqli("localhost", dbKeys("username"), dbKeys("password"), dbKeys("db
 
 $q = "SELECT * FROM blogPost WHERE blogPost_id = 1";
 $rs = $db->query($q);
-
-print_r($rs->fetch_assoc());

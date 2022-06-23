@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-9">
+    <div class="col">
         {% for post in posts %}
             {% if post.featured %}
                 {{ post.seoTitle }}
@@ -12,19 +12,6 @@
                 {{ post.seoDescription }}
             {% endif %}
         {% endfor %}
-    </div>
-    <div class="col-3">
-        <div class="blog-sidebar">
-            {% for post in posts %}
-                {{ post.seoTitle }}
-                <div class="box-16x9">
-                    <div class="box-inner">
-                        <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
     </div>
 </div>
 <div style="height: 150px;"></div>

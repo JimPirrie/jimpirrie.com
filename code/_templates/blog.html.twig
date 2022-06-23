@@ -5,15 +5,28 @@
         <div class="row">
             <div class="col">
                 {% if blogPostId %}
-                    <a href="/blog">Blog Home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ seo.title }}</strong>
+                    <a href="/blog">Blog Home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ post.title }}</strong>
                 {% else %}
                     <strong>Blog Home</strong>
                 {% endif %}
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-9">
                 {% include(contentTemplate) %}
+            </div>
+            <div class="col-3">
+                <div class="blog-sidebar">
+                    {% for post in posts %}
+                        {{ post.seoTitle }}
+                        <div class="box-16x9">
+                            <div class="box-inner">
+                                <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

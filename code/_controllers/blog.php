@@ -16,15 +16,22 @@ if(sizeof($parts) > 3) {
     $blogPostSlug = $parts[3];
 }
 
-include(__DIR__."/../_templates/blog/_postMetadata.php"); // $posts array is here. Body content is in twig template
+$q = "SELECT * FROM blogPost WHERE `status` = \"published\"";
+$rs = $db->query($q);
+
+$posts = [];
+while($post = $rs->fetch_assoc()){
+
+    $posts[$post["blogPost_id"]] = $post;
+}
 
 if($blogPostId){
 
-    if(!$posts[$blogPostId]){
+    if(!array_key_exists($blogPostId, $posts)){
 
         // post not found - redirect to blog home page
 
-        header("Location: /blog/", true, 404);
+        header("Location: /blog/");
         exit;
     }
     elseif($blogPostSlug != $posts[$blogPostId]["slug"]){
@@ -39,14 +46,7 @@ if($blogPostId){
     $seoImage = $posts[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
-    $esc_blogPost_id = $db->real_escape_string($blogPostId);
-
-    $q = "SELECT evernoteGuid FROM blogPost WHERE blogPost_id = {$esc_blogPost_id}";
-    $rs = $db->query($q);
-
-    $data = $rs->fetch_assoc();
-
-    $post = evernote_parseNote($data["evernoteGuid"]);
+    $post = $posts[$blogPostId];
 
     $contentTemplate = "blog-post.html.twig";
 }

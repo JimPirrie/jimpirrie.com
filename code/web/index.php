@@ -38,9 +38,9 @@ else{
     }
 }
 
-
 $twigData["seo"]["canonical"] = "";
 $twigData["seo"]["fbAppId"] = "";
+$twigData["POST"] = $_POST;
 
 renderPage($controller);
 

@@ -162,6 +162,8 @@ function parseImagePlaceholders($body){
         if($i == sizeof($positions) -1 AND strpos($body, "[[VIMEO") !== false){
 
             // there is a video - don't show the first image as it's the thumbnail for the video, but still use it as the seoImage
+
+            $body = str_replace($tag, "", $body);
         }
         else{
 
@@ -186,15 +188,13 @@ function parseVideoPlaceholder($evernoteGuid, $body){
         $url = str_replace("\xc2\xa0", '', $url);
         $url = urlencode($url);
 
-        print_r("]]{$url}[[");
+        $oembedUrl = "https://vimeo.com/api/oembed.json?url={$url}&responsive=true";
 
-        $oembedUrl = "https://vimeo.com/api/oembed.json?url={$url}";
+        $data = json_decode(file_get_contents($oembedUrl));
 
-        $json = file_get_contents($oembedUrl);
+        $player = $data->html;
 
-        print_r($json);
-
-        $body = str_replace($tag, "{$url}", $body);
+        $body = str_replace($tag, $player, $body);
     }
 
     return $body;
@@ -202,11 +202,14 @@ function parseVideoPlaceholder($evernoteGuid, $body){
 
 function evernote_parseNote($noteGuid){
 
+    global $db;
+
     $client = new Evernote\Client(evernoteDevToken(1));
 
     $note = $client->getNote($noteGuid);
 
-    $title = $note->title;
+    $esc_title = $db->real_escape_string($note->title);
+
     $body = $note->content;
 
     $body = replaceResources($noteGuid, $body);
@@ -230,14 +233,15 @@ function evernote_parseNote($noteGuid){
         mkdir($dir, 0777, true);
     }
 
+    array_map( 'unlink', array_filter((array) glob("{$dir}/*") ) );
+
     $path = "{$dir}/{$resource->attributes->fileName}";
 
     file_put_contents($path, $img_raw);
 
-    // tidy up line breaks
+    // tidy up line breaks etc etc
     $body = str_replace(["<br clear=\"none\"/>", "<br />","<br>","<br/>"], "\r\n", $body);
-
-    $body = nl2br(trim(strip_tags($body, "<em><strong>")));
+    $body = nl2br(trim(strip_tags($body, "<em><strong><span>")));
     $body = str_replace(["\r", "\n"], "", $body);
     $body = str_replace(["<br /><br />", "<br /><br />"], "<br />", $body);
     $body = str_replace("<br />", "<br /><br />", $body);
@@ -245,8 +249,10 @@ function evernote_parseNote($noteGuid){
     $body = parseImagePlaceholders($body);
     $body = parseVideoPlaceholder($noteGuid, $body);
 
-    $return["title"] = $title;
-    $return["body"] = $body;
+    $body = str_replace("<br /><br /><br />", "<br />", $body);
 
-    return $return;
+    $esc_body = $db->real_escape_string($body);
+
+    $q = "UPDATE blogPost SET title = \"$esc_title\",  body = \"{$esc_body}\" WHERE evernoteGuid = \"{$noteGuid}\"";
+    $db->query($q);
 }

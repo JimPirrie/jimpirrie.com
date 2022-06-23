@@ -1,0 +1,84 @@
+{% extends "_page.html.twig" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if blogPostId %}
+                    <a href="/blog">Blog Manager</a>
+                {% else %}
+                    <strong>Blog Home</strong>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    <input type="text" class="form-control" name="guid" value="">
+                    <input class="btn btn-primary" type="submit" name="createPost" value="add">
+                </form>
+
+                {% for post in posts %}
+                    <div>
+                        <table class="w-100">
+                            <tr>
+                                <td class="w-25" rowspan="3">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
+                                </td>
+                                <td class="pl-4 align-top">
+                                    <strong><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}" target="_blank">{{ post.title }}</a></strong><br>
+                                    {{ post.seoDescription }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 align-top">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 align-top">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 align-top">
+
+                                </td>
+                            </tr>
+                        </table>
+                        {{ post.blogPost_id }}<br>
+                        {{ post.status }}<br>
+                        {{ post.evernoteGuid }}<br>
+                        {{ post.title }}<br>
+                        {{ post.seoImage }}<br>
+                        {{ post.slug }}<br>
+                        {{ post.seoTitle }}<br>
+
+                        <div>
+                            <form class="d-inline-block" method="POST">
+                                <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
+                                {% if POST.deletePost %}
+                                    <input class="btn btn-warning d-inline-block" type="submit" name="confirmDeletePost" value="confirm">
+                                    <input class="btn btn-success d-inline-block" type="submit" name="cancel" value="cancel">
+                                {% else %}
+                                    <input class="btn btn-danger d-inline-block" type="submit" name="deletePost" value="delete">
+                                {% endif %}
+                            </form>
+                            <form class="d-inline-block float-right" method="POST">
+                                <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                <select class="form-control d-inline-block" style="width: 120px;" name="status">
+                                    <option value="draft">draft</option>
+                                    <option value="published" {% if post.status == "published" %}selected{% endif %}>published</option>
+                                </select>
+                                <input class="btn btn-primary d-inline-block" type="submit" name="updateStatus" value="update status">
+                            </form>
+                            <form class="d-inline-block float-right mr-5" method="POST">
+                                <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
+                                <input class="btn btn-primary d-inline-block" type="submit" name="updatePost" value="refresh content">
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
