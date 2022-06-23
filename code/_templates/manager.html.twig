@@ -6,19 +6,33 @@
                 {% if blogPostId %}
                     <a href="/blog">Blog Manager</a>
                 {% else %}
-                    <strong>Blog Home</strong>
+                    <strong>Manager</strong>
                 {% endif %}
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <form method="POST">
-                    <input type="text" class="form-control" name="guid" value="">
-                    <input class="btn btn-primary" type="submit" name="createPost" value="add">
-                </form>
-
-                {% for post in posts %}
-                    <div>
+                <div class="py-4">
+                    <form class="d-inline-block float-right" method="POST">
+                        <select class="form-control d-inline-block" style="width: 180px;" name="sort" onchange="this.form.submit();">
+                            <option value="all" {{ sortSelected.all }}>all</option>
+                            <option value="draft" {{ sortSelected.draft }}>draft</option>
+                            <option value="published" {{ sortSelected.published }}>published</option>
+                            <option value="featured_main" {{ sortSelected.featured_main }}>featured (main)</option>
+                            <option value="featured_sidebar" {{ sortSelected.featured_sidebar }}>featured (sidebar)</option>
+                        </select>
+                    </form>
+                    <form method="POST">
+                        <input type="text" class="form-control d-inline-block" style="width: 200px;" name="guid" value="">
+                        <input class="btn btn-primary d-inline-block" type="submit" name="createPost" value="add">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9">
+                {% for post in mainList %}
+                    <div class="p-3 mb-3" style="background-color: lightgray; border-radius: 5px;">
                         <table class="w-100">
                             <tr>
                                 <td class="w-25" rowspan="3">
@@ -45,14 +59,6 @@
                                 </td>
                             </tr>
                         </table>
-                        {{ post.blogPost_id }}<br>
-                        {{ post.status }}<br>
-                        {{ post.evernoteGuid }}<br>
-                        {{ post.title }}<br>
-                        {{ post.seoImage }}<br>
-                        {{ post.slug }}<br>
-                        {{ post.seoTitle }}<br>
-
                         <div>
                             <form class="d-inline-block" method="POST">
                                 <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
@@ -65,13 +71,36 @@
                             </form>
                             <form class="d-inline-block float-right" method="POST">
                                 <input type="hidden" name="id" value="{{ post.blogPost_id }}">
-                                <select class="form-control d-inline-block" style="width: 120px;" name="status">
+                                <input type="hidden" name="update_featured_sidebar" value="1">
+                                <select class="form-control d-inline-block" style="width: 120px;" name="featured_sidebar" onchange="this.form.submit()">
+                                    <option value="0" {% if post.featured_sidebar == 0 %}selected{% endif %}>sidebar 0</option>
+                                    <option value="1" {% if post.featured_sidebar == 1 %}selected{% endif %}>sidebar 1</option>
+                                    <option value="2" {% if post.featured_sidebar == 2 %}selected{% endif %}>sidebar 2</option>
+                                    <option value="3" {% if post.featured_sidebar == 3 %}selected{% endif %}>sidebar 3</option>
+                                    <option value="4" {% if post.featured_sidebar == 4 %}selected{% endif %}>sidebar 4</option>
+                                    <option value="5" {% if post.featured_sidebar == 5 %}selected{% endif %}>sidebar 5</option>
+                                </select>
+                            </form>
+                            <form class="d-inline-block float-right mr-2" method="POST">
+                                <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                <input type="hidden" name="update_featured_main" value="1">
+                                <select class="form-control d-inline-block" style="width: 120px;" name="featured_main" onchange="this.form.submit()">
+                                    <option value="0" {% if post.featured_main == 0 %}selected{% endif %}>main 0</option>
+                                    <option value="1" {% if post.featured_main == 1 %}selected{% endif %}>main 1</option>
+                                    <option value="2" {% if post.featured_main == 2 %}selected{% endif %}>main 2</option>
+                                    <option value="3" {% if post.featured_main == 3 %}selected{% endif %}>main 3</option>
+                                    <option value="4" {% if post.featured_main == 4 %}selected{% endif %}>main 4</option>
+                                    <option value="5" {% if post.featured_main == 5 %}selected{% endif %}>main 5</option>
+                                </select>
+                            </form>
+                            <form class="d-inline-block float-right mr-2" method="POST">
+                                <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                <select class="form-control d-inline-block" style="width: 120px;" name="status" onchange="this.form.submit()">
                                     <option value="draft">draft</option>
                                     <option value="published" {% if post.status == "published" %}selected{% endif %}>published</option>
                                 </select>
-                                <input class="btn btn-primary d-inline-block" type="submit" name="updateStatus" value="update status">
                             </form>
-                            <form class="d-inline-block float-right mr-5" method="POST">
+                            <form class="d-inline-block float-right mr-2" method="POST">
                                 <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
                                 <input class="btn btn-primary d-inline-block" type="submit" name="updatePost" value="refresh content">
                             </form>
@@ -79,6 +108,23 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class="col-3 p-3" style="background-color: lightgray; border-radius: 5px;">
+                Popular Posts
+                {% for post in sidebarFeaturedList %}
+                    <div>
+                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
+                        {{ post.title }}
+                    </div>
+                {% endfor %}
+                <hr>
+                {% for post in sidebarOtherList %}
+                    <div>
+                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
+                        {{ post.title }}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+    <div style="height: 100px;"></div>
 {% endblock %}
