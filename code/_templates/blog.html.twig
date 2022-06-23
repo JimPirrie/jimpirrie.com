@@ -17,14 +17,25 @@
             </div>
             <div class="col-3">
                 <div class="blog-sidebar">
-                    {% for post in posts %}
-                        {{ post.seoTitle }}
-                        <div class="box-16x9">
+                    Popular Posts
+                    {% for post in sidebarFeaturedList %}
+                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                             <div class="box-inner">
                                 <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
                                 </div>
                             </div>
                         </div>
+                        {{ post.title }}
+                    {% endfor %}
+                    <hr>
+                    {% for post in sidebarOtherList %}
+                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
+                            <div class="box-inner">
+                                <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                </div>
+                            </div>
+                        </div>
+                        {{ post.title }}
                     {% endfor %}
                 </div>
             </div>

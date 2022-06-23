@@ -16,13 +16,28 @@ if(sizeof($parts) > 3) {
     $blogPostSlug = $parts[3];
 }
 
-$q = "SELECT * FROM blogPost WHERE `status` = \"published\"";
+$q = "SELECT * FROM blogPost WHERE featured_main > 0 AND `status` = \"published\" ORDER BY featured_main";
 $rs = $db->query($q);
 
-$posts = [];
 while($post = $rs->fetch_assoc()){
 
-    $posts[$post["blogPost_id"]] = $post;
+    $mainList[] = $post;
+}
+
+$q = "SELECT * FROM blogPost WHERE featured_sidebar > 0 ORDER BY featured_sidebar";
+$rs = $db->query($q);
+
+while($post = $rs->fetch_assoc()){
+
+    $sidebarFeaturedList[] = $post;
+}
+
+$q = "SELECT * FROM blogPost WHERE featured_sidebar = 0 ORDER BY title";
+$rs = $db->query($q);
+
+while($post = $rs->fetch_assoc()){
+
+    $sidebarOtherList[] = $post;
 }
 
 if($blogPostId){
@@ -63,7 +78,9 @@ else{
 }
 
 $twigData["blogPostId"] = $blogPostId;
-$twigData["posts"] = $posts;
+$twigData["mainList"] = $mainList;
+$twigData["sidebarFeaturedList"] = $sidebarFeaturedList;
+$twigData["sidebarOtherList"] = $posts;
 $twigData["post"] = $post;
 $twigData["contentTemplate"] = "blog/{$contentTemplate}";
 $twigData["seo"]["title"] = $seoTitle;
