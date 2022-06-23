@@ -3,6 +3,7 @@
 function renderPage($controller){
 
     global $twigData;
+    global $db;
 
     include(__DIR__."/../_controllers/{$controller}.php");
 

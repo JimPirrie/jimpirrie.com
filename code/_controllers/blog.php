@@ -39,7 +39,16 @@ if($blogPostId){
     $seoImage = $posts[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
-    $contentTemplate = "post-{$blogPostId}.html.twig";
+    $esc_blogPost_id = $db->real_escape_string($blogPostId);
+
+    $q = "SELECT evernoteGuid FROM blogPost WHERE blogPost_id = {$esc_blogPost_id}";
+    $rs = $db->query($q);
+
+    $data = $rs->fetch_assoc();
+
+    $post = evernote_parseNote($data["evernoteGuid"]);
+
+    $contentTemplate = "blog-post.html.twig";
 }
 else{
 
@@ -55,6 +64,7 @@ else{
 
 $twigData["blogPostId"] = $blogPostId;
 $twigData["posts"] = $posts;
+$twigData["post"] = $post;
 $twigData["contentTemplate"] = "blog/{$contentTemplate}";
 $twigData["seo"]["title"] = $seoTitle;
 $twigData["seo"]["description"] = $seoDescription;
