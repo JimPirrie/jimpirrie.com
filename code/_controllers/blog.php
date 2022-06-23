@@ -21,7 +21,7 @@ $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
 
-    $mainList[] = $post;
+    $mainList[$post["blogPost_id"]] = $post;
 }
 
 $q = "SELECT * FROM blogPost WHERE featured_sidebar > 0 ORDER BY featured_sidebar";
@@ -42,7 +42,7 @@ while($post = $rs->fetch_assoc()){
 
 if($blogPostId){
 
-    if(!array_key_exists($blogPostId, $posts)){
+    if(!array_key_exists($blogPostId, $mainList)){
 
         // post not found - redirect to blog home page
 
@@ -61,7 +61,7 @@ if($blogPostId){
     $seoImage = $posts[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
-    $post = $posts[$blogPostId];
+    $post = $mainList[$blogPostId];
 
     $contentTemplate = "blog-post.html.twig";
 }
