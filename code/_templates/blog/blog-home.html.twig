@@ -1,28 +1,33 @@
 <div class="row">
     <div class="col">
-        {% for post in mainList %}
-            <div class="p-3 mb-3" style="background-color: lightgray; border-radius: 5px;">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="box-16x9"  style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                            <div class="box-inner">
-                                <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+        {% if mainList %}
+            {% for post in mainList %}
+                <div class="p-3 mb-3" style="background-color: whitesmoke; border-radius: 5px;">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="box-16x9"  style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                                <div class="box-inner">
+                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-7 pr-5">
-                        <h5><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a></h5>
-                        <p>
-                            {{ post.seoDescription }}
-                        </p>
-                        <p class="text-right">
-                            <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">more...</a>
-                        </p>
+                        <div class="col-7 pr-5">
+                            <h5><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a></h5>
+                            <p>
+                                {{ post.seoDescription }}
+                            </p>
+                            <p class="text-right">
+                                <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">more...</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
+        {% elseif activeTag %}
+            <div class="py-5 text-center">
+                active tag: <span class="btn btn-success px-2 py-0" style="font-size: 12px;">{{ activeTag }}</span><br><br><br>no posts to show <a class="btn btn-warning px-2 py-0" style="font-size: 12px;" href="/blog/?cleartags=1">clear tags</a>
             </div>
-        {% endfor %}
+        {% endif %}
     </div>
 </div>
-<div style="height: 150px;"></div>

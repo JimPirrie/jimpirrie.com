@@ -4,8 +4,6 @@ loginManager();
 
 // evernote oauth
 
-print_r($_SESSION["login"]);
-
 $key = evernoteKeys("key");
 $secret = evernoteKeys("secret");
 $sandbox = evernoteKeys("sandbox");
@@ -191,6 +189,8 @@ if($_POST["status"]){
 }
 
 if($_POST["updatePost"]){
+
+    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
 

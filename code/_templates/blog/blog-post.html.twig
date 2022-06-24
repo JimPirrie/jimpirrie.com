@@ -1,2 +1,13 @@
-<h1>{{ post.title }}</h1>
-{{ post.body | raw }}
+<div class="row">
+    <div class="col pl-0 pr-3">
+        <div class="px-5" style="background-color: whitesmoke; border-radius: 5px; padding-bottom: 150px;">
+            <h1>{{ post.title }}</h1>
+            <div class="mb-5" style="font-weight: 300; font-size: 16px;">
+                {{ post.seoDescription | raw }}
+            </div>
+            <div>
+                {{ post.body | raw }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col py-3 px-0">
                 {% if blogPostId %}
                     <a href="/blog">Blog Home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ post.title }}</strong>
                 {% else %}
@@ -15,8 +15,8 @@
             <div class="col-9">
                 {% include(contentTemplate) %}
             </div>
-            <div class="col-3">
-                <div class="blog-sidebar">
+            <div class="col-3 blog-sidebar">
+                <div class="">
                     {% if sidebarFeaturedList %}
                         <div class="mb-2">
                             <strong>Popular posts</strong>
@@ -32,6 +32,19 @@
                                 {{ post.title }}
                             </div>
                         {% endfor %}
+                    {% endif %}
+                    {% if tags %}
+                        <div class="mb-2">
+                            <strong>Tags</strong>
+                        </div>
+                        <div class="text-center">
+                            {% for tag in tags %}
+                                <a class="btn {% if activeTag == tag %}btn-success{% else %}btn-primary{% endif %} px-1 py-0 mt-1" style="font-size: 12px;" href="/blog/?tag={{ tag }}">{{ tag }}</a>
+                            {% endfor %}
+                            {% if activeTag %}
+                                <a class="btn btn-warning px-1 py-0 d-block mx-5 mt-2" style="font-size: 12px;" href="/blog/?cleartags=1">clear tags</a>
+                            {% endif %}
+                        </div>
                     {% endif %}
                     {% if sidebarOtherList %}
                         <hr>
@@ -54,4 +67,5 @@
             </div>
         </div>
     </div>
+    <div style="height: 200px;"></div>
 {% endblock %}

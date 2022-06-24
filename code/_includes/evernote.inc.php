@@ -229,7 +229,7 @@ function evernote_parseNote($noteObj){
 
     // tidy up line breaks etc etc
     $body = str_replace(["<br clear=\"none\"/>", "<br />","<br>","<br/>"], "\r\n", $body);
-    $body = nl2br(trim(strip_tags($body, "<em><strong><span>")));
+    $body = nl2br(trim(strip_tags($body, "<em><strong><span><ul><ol><li>")));
     $body = str_replace(["\r", "\n"], "", $body);
     $body = str_replace(["<br /><br />", "<br /><br />"], "<br />", $body);
     $body = str_replace("<br />", "<br /><br />", $body);
@@ -241,6 +241,15 @@ function evernote_parseNote($noteObj){
 
     $esc_body = $db->real_escape_string($body);
 
-    $q = "UPDATE blogPost SET title = \"$esc_title\",  body = \"{$esc_body}\" WHERE evernoteGuid = \"{$esc_guid}\"";
+    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
+
+    $noteStore = $client->getUserNotestore();
+
+    $tagArr = $noteStore->getNoteTagNames($_SESSION["evernote"]["oauth_token"], $esc_guid);
+
+    $esc_tags = implode(";", $tagArr);
+
+
+    $q = "UPDATE blogPost SET title = \"$esc_title\",  body = \"{$esc_body}\", tags = \";{$esc_tags};\" WHERE evernoteGuid = \"{$esc_guid}\"";
     $db->query($q);
 }

@@ -1,5 +1,20 @@
 <?php
 
+if($_GET["tag"]){
+
+    $_SESSION["activeTag"] = $db->real_escape_string($_GET["tag"]);
+}
+
+if($_GET["cleartags"]){
+
+    unset($_SESSION["activeTag"]);
+}
+
+if($_SESSION["activeTag"]){
+
+    $tagFilter = "tags LIKE \"%;{$_SESSION["activeTag"]};%\" AND ";
+}
+
 $path = parse_url($_GET["actualRequest"])["path"];
 
 $parts = explode("/", $path);
@@ -16,15 +31,22 @@ if(sizeof($parts) > 3) {
     $blogPostSlug = $parts[3];
 }
 
-$q = "SELECT * FROM blogPost WHERE `status` = \"published\"";
+$q = "SELECT * FROM blogPost WHERE {$tagFilter} `status` = \"published\"";
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
 
     $publishedList[$post["blogPost_id"]] = $post;
+
+    $tags.= $post["tags"];
 }
 
-$q = "SELECT * FROM blogPost WHERE featured_main > 0 AND `status` = \"published\" ORDER BY featured_main";
+$tags = array_filter(array_unique(explode(";", $tags)));
+
+print_r($tags);
+
+
+$q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_main > 0 AND `status` = \"published\" ORDER BY featured_main";
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
@@ -32,7 +54,7 @@ while($post = $rs->fetch_assoc()){
     $mainList[$post["blogPost_id"]] = $post;
 }
 
-$q = "SELECT * FROM blogPost WHERE featured_sidebar > 0 ORDER BY featured_sidebar";
+$q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_sidebar > 0 ORDER BY featured_sidebar";
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
@@ -40,7 +62,7 @@ while($post = $rs->fetch_assoc()){
     $sidebarFeaturedList[] = $post;
 }
 
-$q = "SELECT * FROM blogPost WHERE featured_sidebar = 0 ORDER BY title";
+$q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_sidebar = 0 ORDER BY title";
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
@@ -85,6 +107,8 @@ else{
     $contentTemplate = "blog-home.html.twig";
 }
 
+$twigData["tags"] = $tags;
+$twigData["activeTag"] = $_SESSION["activeTag"];
 $twigData["blogPostId"] = $blogPostId;
 $twigData["mainList"] = $mainList;
 $twigData["sidebarFeaturedList"] = $sidebarFeaturedList;
