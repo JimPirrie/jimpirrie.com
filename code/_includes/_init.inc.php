@@ -14,5 +14,4 @@ global $db;
 $db = new mysqli("localhost", dbKeys("username"), dbKeys("password"), dbKeys("dbName")) or die('Could not connect: ' . mysqli_error($db));
 
 
-$q = "SELECT * FROM blogPost WHERE blogPost_id = 1";
-$rs = $db->query($q);
+

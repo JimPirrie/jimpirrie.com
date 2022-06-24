@@ -16,6 +16,14 @@ if(sizeof($parts) > 3) {
     $blogPostSlug = $parts[3];
 }
 
+$q = "SELECT * FROM blogPost WHERE `status` = \"published\"";
+$rs = $db->query($q);
+
+while($post = $rs->fetch_assoc()){
+
+    $publishedList[$post["blogPost_id"]] = $post;
+}
+
 $q = "SELECT * FROM blogPost WHERE featured_main > 0 AND `status` = \"published\" ORDER BY featured_main";
 $rs = $db->query($q);
 
@@ -42,26 +50,26 @@ while($post = $rs->fetch_assoc()){
 
 if($blogPostId){
 
-    if(!array_key_exists($blogPostId, $mainList)){
+    if(!array_key_exists($blogPostId, $publishedList)){
 
         // post not found - redirect to blog home page
 
         header("Location: /blog/");
         exit;
     }
-    elseif($blogPostSlug != $posts[$blogPostId]["slug"]){
+    elseif($blogPostSlug != $publishedList[$blogPostId]["slug"]){
 
         // post found, but no slug - redirect to show it
-        header("Location: /blog/{$blogPostId}/{$posts[$blogPostId]["slug"]}", true, 301);
+        header("Location: /blog/{$blogPostId}/{$publishedList[$blogPostId]["slug"]}", true, 301);
         exit;
     }
 
-    $seoTitle = $posts[$blogPostId]["seoTitle"];
-    $seoDescription = $posts[$blogPostId]["seoDescription"];
-    $seoImage = $posts[$blogPostId]["seoImage"];
+    $seoTitle = $publishedList[$blogPostId]["seoTitle"];
+    $seoDescription = $publishedList[$blogPostId]["seoDescription"];
+    $seoImage = $publishedList[$blogPostId]["seoImage"];
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
-    $post = $mainList[$blogPostId];
+    $post = $publishedList[$blogPostId];
 
     $contentTemplate = "blog-post.html.twig";
 }

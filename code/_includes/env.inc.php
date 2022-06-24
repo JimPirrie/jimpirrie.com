@@ -1,23 +1,91 @@
 <?php
 
-function evernoteDevToken($sandbox = 0){
+function loginManager(){
 
-    global $db;
+    $hash = '$2y$10$O4PAtBnUy68M0fmQ9NtUfugmSQkM.zWRO86J27Zplp/Z5a.X/iOzq';
 
-    if($sandbox){
+    if($_POST["login"]){
 
-        $q = "SELECT evernoteDeveloperToken_sandbox AS devToken FROM env WHERE env_id = 1";
+        if($_POST["email"] == "jim@jimpirrie.com" AND password_verify($_POST["password"], $hash)) {
+
+            $_SESSION["login"]["status"] = "logged-in";
+
+            header("Location: /manager");
+            exit;
+        }
+        else{
+
+            header("Location: /manager?loginerror=1");
+            exit;
+        }
+    }
+
+    if($_POST["logout"]){
+
+        unset($_SESSION["login"]);
+        unset($_SESSION["evernote"]);
+
+        header("Location: /manager");
+        exit;
+    }
+}
+
+function siteurl(){
+
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+
+        // SSL connection
+
+        return "https://www.jimpirrie.com";
     }
     else{
 
-        $q = "SELECT evernoteDeveloperKToken_production AS devToken FROM env WHERE env_id = 1";
+        return "http://jimpirrie.local";
     }
+}
 
-    $rs = $db->query($q);
+function evernoteKeys($what){
 
-    $data = $rs->fetch_assoc();
+    $sandbox = true;
 
-    return $data["devToken"];
+    if($sandbox){
+
+        if($what == "key"){
+
+            return "jim5598";
+        }
+        elseif($what == "secret"){
+
+            return "9e5bc01283ac18d1";
+        }
+        elseif($what == "appname"){
+
+            return "Blog Post Generator";
+        }
+        elseif($what == "sandbox"){
+
+            return true;
+        }
+    }
+    else{
+
+        if($what == "key"){
+
+            return "";
+        }
+        elseif($what == "secret"){
+
+            return "";
+        }
+        elseif($what == "appname"){
+
+            return "Blog Post Generator";
+        }
+        elseif($what == "sandbox"){
+
+            return true;
+        }
+    }
 }
 
 function dbKeys($var, $cronLocal = 0){

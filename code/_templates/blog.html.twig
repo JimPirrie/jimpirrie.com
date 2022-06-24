@@ -17,26 +17,39 @@
             </div>
             <div class="col-3">
                 <div class="blog-sidebar">
-                    Popular Posts
-                    {% for post in sidebarFeaturedList %}
-                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                            <div class="box-inner">
-                                <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
-                                </div>
-                            </div>
+                    {% if sidebarFeaturedList %}
+                        <div class="mb-2">
+                            <strong>Popular posts</strong>
                         </div>
-                        {{ post.title }}
-                    {% endfor %}
-                    <hr>
-                    {% for post in sidebarOtherList %}
-                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
-                            <div class="box-inner">
-                                <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                        {% for post in sidebarFeaturedList %}
+                            <div class="mb-4">
+                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                                    <div class="box-inner">
+                                        <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                        </div>
+                                    </div>
                                 </div>
+                                {{ post.title }}
                             </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if sidebarOtherList %}
+                        <hr>
+                        <div class="mb-2">
+                            <strong>Posts you might like</strong>
                         </div>
-                        {{ post.title }}
-                    {% endfor %}
+                        {% for post in sidebarOtherList %}
+                            <div class="mb-4">
+                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
+                                    <div class="box-inner">
+                                        <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ post.title }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
