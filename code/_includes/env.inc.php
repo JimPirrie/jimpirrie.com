@@ -44,6 +44,20 @@ function siteurl(){
     }
 }
 
+function isProductionSite(){
+
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+
+        // SSL connection
+
+        return true;
+    }
+    else{
+
+        return false;
+    }
+}
+
 function evernoteKeys($what){
 
     $sandbox = true;

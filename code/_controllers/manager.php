@@ -152,7 +152,7 @@ if($_POST["createPost"]){
     }
     catch(Exception $e){
 
-        print_r($e);
+        echo($e);
     }
 
     header("Location: /manager");
@@ -214,7 +214,7 @@ if($_POST["updatePost"]){
     }
     catch(Exception $e){
 
-        print_r($e);
+        echo($e);
     }
 
     header("Location: /manager");

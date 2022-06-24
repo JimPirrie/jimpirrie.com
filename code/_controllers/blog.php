@@ -43,8 +43,6 @@ while($post = $rs->fetch_assoc()){
 
 $tags = array_filter(array_unique(explode(";", $tags)));
 
-print_r($tags);
-
 
 $q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_main > 0 AND `status` = \"published\" ORDER BY featured_main";
 $rs = $db->query($q);
