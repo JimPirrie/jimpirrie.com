@@ -130,7 +130,7 @@ if($_POST["createPost"]){
         $esc_guid = $get["n"];
     }
 
-    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
+    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
     try{
 
@@ -153,6 +153,7 @@ if($_POST["createPost"]){
     catch(Exception $e){
 
         echo($e);
+        exit;
     }
 
     header("Location: /manager");
@@ -190,7 +191,7 @@ if($_POST["status"]){
 
 if($_POST["updatePost"]){
 
-    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
+    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
 

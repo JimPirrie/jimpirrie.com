@@ -9,7 +9,7 @@ function replaceResources($evernoteGuid, $body){
 
     // set up evernote and image folder
 
-    $evernote = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
+    $evernote = new Evernote\Client($_SESSION["evernote"]["oauth_token"], evernoteKeys("sandbox"));
 
     $noteStore = $evernote->getUserNotestore();
 
@@ -35,7 +35,7 @@ function replaceResources($evernoteGuid, $body){
 
     if($positions){
 
-        $endTag = "</en-media>";
+        $endTag = "/>";
         $endTagLength = strlen($endTag);
 
         $hashLabel = "hash=\"";
@@ -43,7 +43,7 @@ function replaceResources($evernoteGuid, $body){
 
         foreach($positions AS $i => $position){
 
-            $endPos = strpos($body, "</en-media>", $position["start"]) + $endTagLength;
+            $endPos = strpos($body, "/>", $position["start"]) + $endTagLength;
 
             $hashStartPos = strpos($body, $hashLabel, $position["start"]) + $hashLabelLength;
             $hashEndPos = strpos($body, '"', $hashStartPos);
@@ -90,64 +90,10 @@ function replaceResources($evernoteGuid, $body){
     return $body;
 }
 
-function replaceMetadata($evernoteGuid, $body){
-
-    global $db;
-
-    $placeholders[] = ["slug", "[[SLUG"];
-    $placeholders[] = ["seoTitle", "[[SEOTITLE"];
-    $placeholders[] = ["seoDescription", "[[SEODESCRIPTION"];
-
-    $comma = "";
-    $updates = "";
-    foreach($placeholders AS $i => $placeholder){
-
-        $name = $placeholder[0];
-        $tagStart = $placeholder[1];
-
-        $start = strpos($body, $tagStart);
-
-        if($start !== false){
-
-            $end = strpos($body, "]]") +2;
-        }
-
-        if($i == 0){
-
-            $metaDataStart = $start;
-        }
-
-        if($i == sizeof($placeholders)){
-
-            $metaDataEnd = $end;
-        }
-
-        $placeholderTag = substr($body, $start, $end - $start);
-
-        $esc_content = $db->real_escape_string(trim(strip_tags(str_replace([$tagStart, "]]"], "", $placeholderTag))));
-
-        if(!$esc_content){
-
-            $esc_content = "missing-{$name}";
-        }
-
-        $body = str_replace($placeholderTag, "", $body);
-
-        $updates.= "{$comma} {$name} = \"{$esc_content}\"";
-
-        $comma = ",";
-    }
-
-    $q = "UPDATE blogPost SET {$updates} WHERE evernoteGuid = \"{$evernoteGuid}\"";
-    $db->query($q);
-
-    return $body;
-}
 
 function parseImagePlaceholders($body){
 
     $start = 0;
-    $i = 0;
     while($start = strpos($body, "[[IMG", $start)){
 
         $positions[]["start"] = $start;
@@ -179,7 +125,7 @@ function parseImagePlaceholders($body){
             }
             else{
 
-                $body = str_replace($tag, "<img class='img-fluid' src=\"{$link}\">", $body);
+                $body = str_replace($tag, "<div class='blog-image-container'><img class='blog-image' src=\"{$link}\"></div>", $body);
             }
         }
     }
@@ -205,9 +151,75 @@ function parseVideoPlaceholder($evernoteGuid, $body){
 
         $data = json_decode(file_get_contents($oembedUrl));
 
-        $player = $data->html;
+        $player = "<div>{$data->html}</div>";
 
         $body = str_replace($tag, $player, $body);
+    }
+
+    return $body;
+}
+
+function getSeoDescription(&$body){
+
+    $firstDivStart = strpos($body, "<div");
+    $firstDivEnd = strpos($body, "</div>", $firstDivStart) +6;
+
+    // get the text we want
+
+    $seoDescription = str_replace(["<div class=\"blog-content\">","</div>"], "", substr($body, $firstDivStart, $firstDivEnd-$firstDivStart));
+
+    $body = substr_replace($body, "", $firstDivStart, $firstDivEnd-$firstDivStart);
+
+    return $seoDescription;
+}
+
+function trimBodyStart($body){
+
+    $emptyDiv = '<div class="blog-content"></div>';
+    $emptyDivLength = strlen($emptyDiv);
+
+    $divClose = "</div>";
+
+    // find all instances of empty div before content starts
+
+    $i = 0;
+    $start = 0;
+    $positions = [];
+    while($start = strpos($body, "<div", $start)){
+
+        $end = strpos($body, $divClose, $start) + strlen($divClose);
+
+        $thisDivLength = $end - $start;
+
+        if($emptyDivLength != $thisDivLength){
+
+            break;
+        }
+        else{
+
+            $positions[] = $start;
+        }
+
+
+        $start = $start +1;
+
+        if($i > 10){
+
+            break;
+        }
+
+        $i++;
+    }
+
+    // reverse the array
+
+    $positions = array_reverse($positions);
+
+    //delete the empty divs
+
+    foreach($positions AS $startPos){
+
+        $body = substr_replace($body, "", $startPos, $emptyDivLength);
     }
 
     return $body;
@@ -221,27 +233,34 @@ function evernote_parseNote($noteObj){
 
     $esc_title = $db->real_escape_string($noteObj->title);
 
+    $esc_seoTitle = strip_tags($esc_title);
+
+    $esc_slug = strtolower(trim(strip_tags($esc_title)));
+    $esc_slug = str_replace(["  ", "  "], " ", $esc_slug);
+    $esc_slug = str_replace(" ", "-", $esc_slug);
+
     $body = $noteObj->content;
+
+    // mark up all divs as blog content
+
+    $body = str_replace("<div>", "<div class=\"blog-content\">", $body);
+
+    $esc_seoDescription = getSeoDescription($body);
 
     $body = replaceResources($esc_guid, $body);
 
-    $body = replaceMetadata($esc_guid, $body);
-
-    // tidy up line breaks etc etc
-    $body = str_replace(["<br clear=\"none\"/>", "<br />","<br>","<br/>"], "\r\n", $body);
-    $body = nl2br(trim(strip_tags($body, "<em><strong><span><ul><ol><li>")));
-    $body = str_replace(["\r", "\n"], "", $body);
-    $body = str_replace(["<br /><br />", "<br /><br />"], "<br />", $body);
-    $body = str_replace("<br />", "<br /><br />", $body);
-
+    $body = strip_tags($body, "<div><ol><ul><li><span>");
     $body = parseImagePlaceholders($body);
     $body = parseVideoPlaceholder($esc_guid, $body);
+    $body = str_replace(["<en-note>", "</en-note>"], "", $body);
 
-    $body = str_replace("<br /><br /><br />", "<br />", $body);
+    $body = trimBodyStart($body);
+    $start = strpos($body, "<div");
+    $body = substr($body, $start);
 
     $esc_body = $db->real_escape_string($body);
 
-    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"]);
+    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], evernoteKeys("sandbox"));
 
     $noteStore = $client->getUserNotestore();
 
@@ -249,7 +268,6 @@ function evernote_parseNote($noteObj){
 
     $esc_tags = implode(";", $tagArr);
 
-
-    $q = "UPDATE blogPost SET title = \"$esc_title\",  body = \"{$esc_body}\", tags = \";{$esc_tags};\" WHERE evernoteGuid = \"{$esc_guid}\"";
+    $q = "UPDATE blogPost SET slug = \"{$esc_slug}\", title = \"$esc_title\", seoTitle = \"{$esc_seoTitle}\", seoDescription = \"{$esc_seoDescription}\",  body = \"{$esc_body}\", tags = \";{$esc_tags};\" WHERE evernoteGuid = \"{$esc_guid}\"";
     $db->query($q);
 }

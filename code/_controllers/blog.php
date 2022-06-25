@@ -31,7 +31,15 @@ if(sizeof($parts) > 3) {
     $blogPostSlug = $parts[3];
 }
 
-$q = "SELECT * FROM blogPost WHERE {$tagFilter} `status` = \"published\"";
+if($_SESSION["login"]["status"] = "logged-in"){
+
+    $q = "SELECT * FROM blogPost";
+}
+else{
+
+    $q = "SELECT * FROM blogPost WHERE {$tagFilter} `status` = \"published\"";
+}
+
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){

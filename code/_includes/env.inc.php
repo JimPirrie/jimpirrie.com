@@ -60,45 +60,23 @@ function isProductionSite(){
 
 function evernoteKeys($what){
 
-    $sandbox = true;
+    $sandbox = false;
 
-    if($sandbox){
+    if($what == "key"){
 
-        if($what == "key"){
-
-            return "jim5598";
-        }
-        elseif($what == "secret"){
-
-            return "9e5bc01283ac18d1";
-        }
-        elseif($what == "appname"){
-
-            return "Blog Post Generator";
-        }
-        elseif($what == "sandbox"){
-
-            return true;
-        }
+        return "jim5598";
     }
-    else{
+    elseif($what == "secret"){
 
-        if($what == "key"){
+        return "9e5bc01283ac18d1";
+    }
+    elseif($what == "appname"){
 
-            return "";
-        }
-        elseif($what == "secret"){
+        return "Blog Post Generator";
+    }
+    elseif($what == "sandbox"){
 
-            return "";
-        }
-        elseif($what == "appname"){
-
-            return "Blog Post Generator";
-        }
-        elseif($what == "sandbox"){
-
-            return true;
-        }
+        return $sandbox;
     }
 }
 
