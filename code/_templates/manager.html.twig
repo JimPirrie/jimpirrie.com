@@ -44,13 +44,6 @@
                                 <option value="featured_sidebar" {{ sortSelected.featured_sidebar }}>featured (sidebar)</option>
                             </select>
                         </form>
-                        <div>
-
-                        </div>
-                        <form method="POST">
-                            <input type="text" class="form-control d-inline w-50" placeholder="note share url" name="shareUrl" value="">
-                            <input class="btn btn-primary d-inline" type="submit" name="createPost" value="create new post">
-                        </form>
                     </div>
                 </div>
             </div>
@@ -123,6 +116,18 @@
                             </div>
                         </div>
                     {% endfor %}
+                    <div class="p-4" style="background-color: lightgray; border-radius: 5x;">
+                        <strong>Notes not yet converted</strong>
+                        <hr>
+                        {% for guid, title in notCreatedYet %}
+                            <form method="POST" class="w-100">
+                                {{ title }}
+                                <input type="hidden" name="guid" value="{{ guid }}">
+                                <input class="btn btn-primary py-0 d-block float-right" type="submit" name="createPost" value="create new post">
+                            </form>
+                            <hr>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="col-3 p-3" style="background-color: lightgray; border-radius: 5px;">
                     Popular posts

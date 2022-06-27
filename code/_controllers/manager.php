@@ -166,27 +166,7 @@ if($_POST["update_featured_main"]){
 
 if($_POST["createPost"]){
 
-    $esc_url = $db->real_escape_string(trim($_POST["shareUrl"]));
-
-    $parts = parse_url($esc_url);
-
-    if(!$parts["host"]){
-
-        $esc_guid = $esc_url;
-    }
-    if($parts["host"] == "www.evernote.com"){
-
-        $parts = explode("/", $parts["path"]);
-
-        $esc_guid = $parts[4];
-    }
-    elseif($parts["host"] == "sandbox.evernote.com"){
-
-        $get = [];
-        parse_str($parts["fragment"], $get);
-
-        $esc_guid = $get["n"];
-    }
+    $esc_guid = $db->real_escape_string($_POST["guid"]);
 
     $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
