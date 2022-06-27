@@ -11,6 +11,64 @@ $callback = siteurl()."/manager";
 
 $oauth_handler = new Evernote\Auth\OauthHandler($sandbox);
 
+$client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
+
+if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
+
+    // check for notes and updated status
+
+    $notebooks = $client->listNotebooks();
+
+    foreach($notebooks as $notebook){
+
+        if($notebook->name == "Blog"){
+
+            $notebookGuid = $notebook->guid;
+
+            break;
+        }
+    }
+
+    $filter = new EDAM\NoteStore\NoteFilter();
+    $filter->notebookGuid = $notebookGuid;
+
+    $notestore = $client->getUserNotestore();
+    $notelist = $notestore->findNotes($_SESSION["evernote"]["oauth_token"], $filter, 0, 100);
+
+    foreach($notelist->notes AS $note){
+
+        $esc_guid = $db->real_escape_string($note->guid);
+        $created = $note->created;
+
+        $updated_en_local = evernote_parseTitleForDate($note);
+
+        $q = "SELECT updated_local FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
+        $rs = $db->query($q);
+
+        $updated_db_local = $rs->fetch_assoc()["updated_local"];
+
+        if($updated_db_local){
+
+            if($updated_db_local < $updated_en_local){
+
+                $updateRequired["$esc_guid"] = 1;
+            }
+            else{
+
+                $updateRequired["$esc_guid"] = 0;
+            }
+        }
+        else{
+
+            // these note have not yet been created
+
+            $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
+        }
+    }
+}
+
+print_r($updateRequired);
+
 if($_POST["authorize"]){
 
     unset($_SESSION["evernote"]);
@@ -191,7 +249,7 @@ if($_POST["status"]){
 
 if($_POST["updatePost"]){
 
-    $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
+    print_r($_POST);
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
 
@@ -201,7 +259,7 @@ if($_POST["updatePost"]){
 
         if($note){
 
-            $q = "SElECT * FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
+            $q = "SELECT * FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
             $rs = $db->query($q);
 
             if($rs->num_rows == 0){
@@ -247,9 +305,13 @@ if($_SESSION["login"]["status"] == "logged-in"){
 
     $rs = $db->query($q);
 
+    $i = 0;
     while($post = $rs->fetch_assoc()){
 
-        $mainList[] = $post;
+        $mainList[$i] = $post;
+        $mainList[$i]["updateRequired"] = $updateRequired["{$post["evernoteGuid"]}"];
+
+        $i++;
     }
 
     $q = "SELECT * FROM blogPost WHERE featured_sidebar > 0 ORDER BY featured_sidebar";
@@ -273,6 +335,7 @@ $twigData["evernote"] = $_SESSION["evernote"];
 $twigData["login"] = $_SESSION["login"];
 $twigData["sortSelected"]["{$_SESSION["sort"]}"] = "selected";
 $twigData["mainList"] = $mainList;
+$twigData["notCreatedYet"] = $notCreatedYet;
 $twigData["sidebarFeaturedList"] = $sidebarFeaturedList;
 $twigData["sidebarOtherList"] = $sidebarOtherList;
 

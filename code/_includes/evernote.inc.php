@@ -224,13 +224,38 @@ function trimBodyStart($body){
     return $body;
 }
 
+function evernote_parseTitleForDate($note){
+
+    if(strpos($note->title, "[[") !== false){
+
+        $start = strpos($note->title, "[[");
+
+        $end = trim(strpos($note->title, "]]"));
+
+        $date = substr($note->title, $start +2, $end - $start -2);
+
+        return strftime("%Y-%m-%d %H:%M:%S", strtotime($date));
+    }
+    else{
+
+        return strftime("%Y-%m-%d %H:%M:%S", $note->created/1000);
+    }
+}
+
+function stripDateFromTitle($title){
+
+    return trim(preg_replace('/\[\[[\s\S]+?]]/', '', $title));
+}
+
 function evernote_parseNote($noteObj){
 
     global $db;
 
     $esc_guid = $db->real_escape_string($noteObj->guid);
 
-    $esc_title = $db->real_escape_string($noteObj->title);
+    $esc_updated = $db->real_escape_string(evernote_parseTitleForDate($noteObj->title));
+
+    $esc_title = stripDateFromTitle($db->real_escape_string($noteObj->title));
 
     $esc_seoTitle = strip_tags($esc_title);
 
@@ -266,6 +291,18 @@ function evernote_parseNote($noteObj){
 
     $esc_tags = implode(";", $tagArr);
 
-    $q = "UPDATE blogPost SET slug = \"{$esc_slug}\", title = \"$esc_title\", seoTitle = \"{$esc_seoTitle}\", seoDescription = \"{$esc_seoDescription}\",  body = \"{$esc_body}\", tags = \";{$esc_tags};\" WHERE evernoteGuid = \"{$esc_guid}\"";
+    $localNow = localtime(time(),1);
+
+    $now = new DateTime("now", new DateTimeZone('Europe/London') );
+    $updated_local = $now->format('Y-m-d H:i:s');
+
+    $q = "UPDATE blogPost SET   slug = \"{$esc_slug}\", 
+                                title = \"$esc_title\", 
+                                seoTitle = \"{$esc_seoTitle}\",
+                                seoDescription = \"{$esc_seoDescription}\",
+                                body = \"{$esc_body}\",
+                                updated_local = \"$updated_local\",
+                                tags = \";{$esc_tags};\" 
+                                WHERE evernoteGuid = \"{$esc_guid}\"";
     $db->query($q);
 }

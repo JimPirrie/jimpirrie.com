@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-9">
                     {% for post in mainList %}
-                        <div class="p-3 mb-3" style="background-color: lightgray; border-radius: 5px;">
+                        <div class="p-3 mb-3" style="background-color: {% if post.updateRequired %}red{% else %}lightgray{% endif %}; border-radius: 5px;">
                             <table class="w-100">
                                 <tr>
                                     <td class="w-25 align-top" rowspan="3">
@@ -65,6 +65,8 @@
                                     </td>
                                     <td class="pl-4 align-top">
                                         <strong><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}" target="_blank">{{ post.title }}</a></strong><br>
+                                        {{ post.updated_local }}<br>
+                                        {{ post.updateRequired }}<br>
                                         {{ post.tags }}<br>
                                         {{ post.slug }}<br>
                                         {{ post.seoTitle }}<br>
