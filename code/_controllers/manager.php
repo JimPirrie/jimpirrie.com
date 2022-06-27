@@ -257,11 +257,8 @@ if($_POST["updatePost"]){
     exit;
 }
 
-if($_SESSION["login"]["status"] == "logged-in"){
+if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
 
-    print_r("LIS ".$_SESSION["login"]["status"]);
-
-    /*
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
 
         $q = "SELECT * FROM blogPost ORDER BY featured_main, title";
@@ -309,7 +306,6 @@ if($_SESSION["login"]["status"] == "logged-in"){
 
         $sidebarOtherList[] = $post;
     }
-    */
 }
 
 
