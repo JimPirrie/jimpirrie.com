@@ -2,6 +2,15 @@
 
 loginManager();
 
+$q = "DESC blogPost";
+$rs = $db->query($q);
+
+while($data = $rs->fetch_assoc()){
+
+    print_r($data);
+}
+
+
 // evernote oauth
 
 $key = evernoteKeys("key");
@@ -13,12 +22,18 @@ $oauth_handler = new Evernote\Auth\OauthHandler($sandbox);
 
 $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
-
 if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
 
     // check for notes and updated status
 
-    $notebooks = $client->listNotebooks();
+    try{
+
+        $notebooks = $client->listNotebooks();
+    }
+    catch (Exception $e){
+
+        print_r($e);
+    }
 
     foreach($notebooks as $notebook){
 
