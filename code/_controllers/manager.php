@@ -256,9 +256,12 @@ if($_POST["updatePost"]){
     header("Location: /manager");
     exit;
 }
-/*
+
 if($_SESSION["login"]["status"] == "logged-in"){
 
+    
+
+    /*
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
 
         $q = "SELECT * FROM blogPost ORDER BY featured_main, title";
@@ -306,8 +309,9 @@ if($_SESSION["login"]["status"] == "logged-in"){
 
         $sidebarOtherList[] = $post;
     }
+    */
 }
-*/
+
 
 $twigData["evernote"] = $_SESSION["evernote"];
 $twigData["login"] = $_SESSION["login"];
