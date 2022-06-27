@@ -196,7 +196,7 @@ if($_POST["createPost"]){
     header("Location: /manager");
     exit;
 }
-/*
+
 if($_POST["confirmDeletePost"]){
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
@@ -256,7 +256,7 @@ if($_POST["updatePost"]){
     header("Location: /manager");
     exit;
 }
-
+/*
 if($_SESSION["login"]["status"] == "logged-in"){
 
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
