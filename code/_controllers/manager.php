@@ -38,13 +38,13 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
     $notestore = $client->getUserNotestore();
     $notelist = $notestore->findNotes($_SESSION["evernote"]["oauth_token"], $filter, 0, 100);
 
-    /*
     foreach($notelist->notes AS $note){
 
         $esc_guid = $db->real_escape_string($note->guid);
         $created = $note->created;
 
         $updated_en_local = evernote_parseTitleForDate($note);
+        /*
 
         $q = "SELECT updated_local FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
         $rs = $db->query($q);
@@ -68,9 +68,10 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
             $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
         }
+        */
     }
 
-    */
+
 }
 
 if($_POST["authorize"]){
