@@ -2,12 +2,12 @@
 {% extends "_page.html.twig" %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col py-3 px-0">
+        <div class="row pb-3">
+            <div class="col px-0 pt-3" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                 {% if blogPostId %}
-                    <a href="/blog">Blog Home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ post.title }}</strong>
+                    <a href="">home</a> <i class="fa-regular fa-arrow-right-long"></i> <a href="/blog">blog</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ post.title }}</strong>
                 {% else %}
-                    <strong>Blog Home</strong>
+                    <a href="">home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>blog</strong>
                 {% endif %}
             </div>
         </div>
@@ -16,54 +16,58 @@
                 {% include(contentTemplate) %}
             </div>
             <div class="col-3 blog-sidebar">
-                <div class="">
-                    {% if sidebarFeaturedList %}
-                        <div class="mb-2">
-                            <strong>Popular posts</strong>
-                        </div>
-                        {% for post in sidebarFeaturedList %}
-                            <div class="mb-4">
-                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                                    <div class="box-inner">
-                                        <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
-                                        </div>
-                                    </div>
-                                </div>
-                                {{ post.title }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% if tags %}
-                        <div class="mb-2">
-                            <strong>Tags</strong>
-                        </div>
-                        <div class="text-center">
-                            {% for tag in tags %}
-                                <a class="btn {% if activeTag == tag %}btn-success{% else %}btn-primary{% endif %} px-1 py-0 mt-1" style="font-size: 12px;" href="/blog/?tag={{ tag }}">{{ tag }}</a>
-                            {% endfor %}
-                            {% if activeTag %}
-                                <a class="btn btn-warning px-1 py-0 d-block mx-5 mt-2" style="font-size: 12px;" href="/blog/?cleartags=1">clear tags</a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                    {% if sidebarOtherList %}
-                        <hr>
-                        <div class="mb-2">
-                            <strong>Posts you might like</strong>
-                        </div>
-                        {% for post in sidebarOtherList %}
-                            <div class="mb-4">
-                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
-                                    <div class="box-inner">
-                                        <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
-                                        </div>
-                                    </div>
-                                </div>
-                                {{ post.title }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                <strong>Follow Jim</strong>
+                <div class="text-center">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_inline_follow_toolbox d-inline-block"></div>
                 </div>
+                <hr>
+                {% if sidebarFeaturedList %}
+                    <div class="mb-2">
+                        <strong>Popular posts</strong>
+                    </div>
+                    {% for post in sidebarFeaturedList %}
+                        <div class="mb-4">
+                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                                <div class="box-inner">
+                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                    </div>
+                                </div>
+                            </div>
+                            {{ post.title }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if tags %}
+                    <div class="mb-2">
+                        <strong>Tags</strong>
+                    </div>
+                    <div class="text-center">
+                        {% for tag in tags %}
+                            <a class="btn {% if activeTag == tag %}btn-success{% else %}btn-primary{% endif %} px-1 py-0 mt-1" style="font-size: 12px;" href="/blog/?tag={{ tag }}">{{ tag }}</a>
+                        {% endfor %}
+                        {% if activeTag %}
+                            <a class="btn btn-warning px-1 py-0 d-block mx-5 mt-2" style="font-size: 12px;" href="/blog/?cleartags=1">clear tags</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if sidebarOtherList %}
+                    <hr>
+                    <div class="mb-2">
+                        <strong>Posts you might like</strong>
+                    </div>
+                    {% for post in sidebarOtherList %}
+                        <div class="mb-4">
+                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
+                                <div class="box-inner">
+                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                                    </div>
+                                </div>
+                            </div>
+                            {{ post.title }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

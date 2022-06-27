@@ -117,23 +117,14 @@ function parseImagePlaceholders($body){
 
             $link = trim(str_replace(["[[IMG", "]]"], "", $tag));
 
-            if($i == sizeof($positions) -1 AND strpos($body, "[[VIMEO") !== false){
-
-                // there is a video - don't show the first image as it's the thumbnail for the video, but still use it as the seoImage
-
-                $body = str_replace($tag, "", $body);
-            }
-            else{
-
-                $body = str_replace($tag, "<div class='blog-image-container'><img class='blog-image' src=\"{$link}\"></div>", $body);
-            }
+            $body = str_replace($tag, "<div class='blog-image-container'><img class='blog-image' src=\"{$link}\"></div>", $body);
         }
     }
 
     return $body;
 }
 
-function parseVideoPlaceholder($evernoteGuid, $body){
+function parseVideoPlaceholder(&$body){
 
     $start = strpos($body, "[[VIMEO");
 
@@ -154,9 +145,17 @@ function parseVideoPlaceholder($evernoteGuid, $body){
         $player = "<div>{$data->html}</div>";
 
         $body = str_replace($tag, $player, $body);
-    }
 
-    return $body;
+        $apiUrl = "http://vimeo.com/api/v2/video/{$data->video_id}.json";
+
+        $data = json_decode(file_get_contents($apiUrl));
+
+        return $data[0]->thumbnail_large;
+    }
+    else{
+
+        return false;
+    }
 }
 
 function getSeoDescription(&$body){
@@ -251,7 +250,6 @@ function evernote_parseNote($noteObj){
 
     $body = strip_tags($body, "<div><ol><ul><li><span>");
     $body = parseImagePlaceholders($body);
-    $body = parseVideoPlaceholder($esc_guid, $body);
     $body = str_replace(["<en-note>", "</en-note>"], "", $body);
 
     $body = trimBodyStart($body);

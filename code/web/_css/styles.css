@@ -93,6 +93,7 @@ a:hover{
     background-color: rgba(245, 245, 245, 0.8);
     font-weight: 300;
     height: 120px;
+    border-bottom: solid lightgray 1px;
 }
 
 #navbarNavDropdown{
@@ -124,15 +125,6 @@ a:hover{
     margin: 0 10px;
     transition: 0.5s;
 }
-
-/*
-.nav-link:hover{
-
-    background-color: #F4F2ED;
-    text-decoration: none;
-}
-
- */
 
 /******************** Carousel */
 

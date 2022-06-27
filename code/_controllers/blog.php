@@ -92,12 +92,17 @@ if($blogPostId){
         exit;
     }
 
+    $post = $publishedList[$blogPostId];
+
     $seoTitle = $publishedList[$blogPostId]["seoTitle"];
     $seoDescription = $publishedList[$blogPostId]["seoDescription"];
-    $seoImage = $publishedList[$blogPostId]["seoImage"];
-    $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
-    $post = $publishedList[$blogPostId];
+    if(!$seoImage = parseVideoPlaceholder($post["body"])){
+
+        $seoImage = siteurl()."{$publishedList[$blogPostId]["seoImage"]}";
+    }
+
+    $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 
     $contentTemplate = "blog-post.html.twig";
 }
@@ -123,7 +128,7 @@ $twigData["post"] = $post;
 $twigData["contentTemplate"] = "blog/{$contentTemplate}";
 $twigData["seo"]["title"] = $seoTitle;
 $twigData["seo"]["description"] = $seoDescription;
-$twigData["seo"]["image"] = "https://www.jimpirrie.com/_images/{$seoImage}";
+$twigData["seo"]["image"] = $seoImage;
 $twigData["seo"]["canonical"] = "https://www.jimpirrie.com/blog/{$seoUrl}";
 
 $twigData["active"]["blog"] = "active";
