@@ -48,18 +48,26 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
         $q = "SELECT updated_local FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
         $rs = $db->query($q);
 
-        $updated_db_local = $rs->fetch_assoc()["updated_local"];
+        if($rs->num_rows){
 
-       /*
-        if($updated_db_local){
+            $updated_db_local = $rs->fetch_assoc()["updated_local"];
 
-            if($updated_db_local < $updated_en_local){
+            if($updated_db_local){
 
-                $updateRequired["$esc_guid"] = 1;
+                if($updated_db_local < $updated_en_local){
+
+                    $updateRequired["$esc_guid"] = 1;
+                }
+                else{
+
+                    $updateRequired["$esc_guid"] = 0;
+                }
             }
             else{
 
-                $updateRequired["$esc_guid"] = 0;
+                // these note have not yet been created
+
+                $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
             }
         }
         else{
@@ -68,7 +76,6 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
             $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
         }
-        */
     }
 
 
