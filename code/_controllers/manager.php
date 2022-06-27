@@ -44,11 +44,11 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
         $created = $note->created;
 
         $updated_en_local = evernote_parseTitleForDate($note);
-        /*
 
         $q = "SELECT updated_local FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
         $rs = $db->query($q);
 
+       /*
         $updated_db_local = $rs->fetch_assoc()["updated_local"];
 
         if($updated_db_local){
