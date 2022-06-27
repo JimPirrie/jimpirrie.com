@@ -259,7 +259,7 @@ if($_POST["updatePost"]){
 
 if($_SESSION["login"]["status"] == "logged-in"){
 
-    
+    print_r("LIS ".$_SESSION["login"]["status"]);
 
     /*
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
