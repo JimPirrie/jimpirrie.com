@@ -63,6 +63,8 @@ while($post = $rs->fetch_assoc()){
 $q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_sidebar > 0 ORDER BY featured_sidebar";
 $rs = $db->query($q);
 
+print_r($q);
+
 while($post = $rs->fetch_assoc()){
 
     $sidebarFeaturedList[] = $post;

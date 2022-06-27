@@ -262,7 +262,7 @@ if($_POST["updatePost"]){
 }
 
 if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
-    
+
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
 
         $q = "SELECT * FROM blogPost ORDER BY featured_main, title";
