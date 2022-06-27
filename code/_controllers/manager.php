@@ -17,9 +17,9 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
     // check for notes and updated status
 
-    /*
     $notebooks = $client->listNotebooks();
 
+    /*
     foreach($notebooks as $notebook){
 
         if($notebook->name == "Blog"){
