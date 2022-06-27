@@ -52,22 +52,13 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
             $updated_db_local = $rs->fetch_assoc()["updated_local"];
 
-            if($updated_db_local){
+            if($updated_db_local < $updated_en_local){
 
-                if($updated_db_local < $updated_en_local){
-
-                    $updateRequired["$esc_guid"] = 1;
-                }
-                else{
-
-                    $updateRequired["$esc_guid"] = 0;
-                }
+                $updateRequired["$esc_guid"] = 1;
             }
             else{
 
-                // these note have not yet been created
-
-                $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
+                $updateRequired["$esc_guid"] = 0;
             }
         }
         else{
@@ -271,8 +262,7 @@ if($_POST["updatePost"]){
 }
 
 if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
-
-    /*
+    
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
 
         $q = "SELECT * FROM blogPost ORDER BY featured_main, title";
@@ -320,7 +310,6 @@ if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_
 
         $sidebarOtherList[] = $post;
     }
-    */
 }
 
 
