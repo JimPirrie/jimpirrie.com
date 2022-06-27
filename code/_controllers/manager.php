@@ -162,7 +162,7 @@ if($_POST["update_featured_main"]){
     header("Location: /manager");
     exit;
 }
-/*
+
 if($_POST["createPost"]){
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
@@ -196,7 +196,7 @@ if($_POST["createPost"]){
     header("Location: /manager");
     exit;
 }
-
+/*
 if($_POST["confirmDeletePost"]){
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
