@@ -71,14 +71,10 @@ while($post = $rs->fetch_assoc()){
 $q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_sidebar = 0 ORDER BY title";
 $rs = $db->query($q);
 
-print_r($q);
-
 while($post = $rs->fetch_assoc()){
 
     $sidebarOtherList[] = $post;
 }
-
-print_r($sidebarOtherList);
 
 if($blogPostId){
 
@@ -127,7 +123,7 @@ $twigData["activeTag"] = $_SESSION["activeTag"];
 $twigData["blogPostId"] = $blogPostId;
 $twigData["mainList"] = $mainList;
 $twigData["sidebarFeaturedList"] = $sidebarFeaturedList;
-$twigData["sidebarOtherList"] = $posts;
+$twigData["sidebarOtherList"] = $sidebarOtherList;
 $twigData["post"] = $post;
 $twigData["contentTemplate"] = "blog/{$contentTemplate}";
 $twigData["seo"]["title"] = $seoTitle;
