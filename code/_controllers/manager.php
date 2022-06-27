@@ -13,6 +13,8 @@ $oauth_handler = new Evernote\Auth\OauthHandler($sandbox);
 
 $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
+print_r("OK");
+/*
 if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
 
     // check for notes and updated status
@@ -318,5 +320,6 @@ $twigData["mainList"] = $mainList;
 $twigData["notCreatedYet"] = $notCreatedYet;
 $twigData["sidebarFeaturedList"] = $sidebarFeaturedList;
 $twigData["sidebarOtherList"] = $sidebarOtherList;
+*/
 
 $contentTemplate = "manage-blog.html.twig";
