@@ -2,15 +2,6 @@
 
 loginManager();
 
-$q = "DESC blogPost";
-$rs = $db->query($q);
-
-while($data = $rs->fetch_assoc()){
-
-    print_r($data);
-}
-
-
 // evernote oauth
 
 $key = evernoteKeys("key");
@@ -26,14 +17,7 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
     // check for notes and updated status
 
-    try{
-
-        $notebooks = $client->listNotebooks();
-    }
-    catch (Exception $e){
-
-        print_r($e);
-    }
+    $notebooks = $client->listNotebooks();
 
     foreach($notebooks as $notebook){
 
@@ -274,6 +258,7 @@ if($_POST["updatePost"]){
 
 if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
 
+    /*
     if(!$_SESSION["sort"] OR $_SESSION["sort"] == "all"){
 
         $q = "SELECT * FROM blogPost ORDER BY featured_main, title";
@@ -321,6 +306,7 @@ if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_
 
         $sidebarOtherList[] = $post;
     }
+    */
 }
 
 
