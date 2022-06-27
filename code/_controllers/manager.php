@@ -32,13 +32,13 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
         }
     }
 
-    /*
     $filter = new EDAM\NoteStore\NoteFilter();
     $filter->notebookGuid = $notebookGuid;
 
     $notestore = $client->getUserNotestore();
     $notelist = $notestore->findNotes($_SESSION["evernote"]["oauth_token"], $filter, 0, 100);
 
+    /*
     foreach($notelist->notes AS $note){
 
         $esc_guid = $db->real_escape_string($note->guid);
