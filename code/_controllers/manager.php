@@ -13,8 +13,7 @@ $oauth_handler = new Evernote\Auth\OauthHandler($sandbox);
 
 $client = new Evernote\Client($_SESSION["evernote"]["oauth_token"], $sandbox);
 
-print_r("OK");
-/*
+
 if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_token"]){
 
     // check for notes and updated status
@@ -163,7 +162,7 @@ if($_POST["update_featured_main"]){
     header("Location: /manager");
     exit;
 }
-
+/*
 if($_POST["createPost"]){
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
@@ -228,8 +227,6 @@ if($_POST["status"]){
 }
 
 if($_POST["updatePost"]){
-
-    print_r($_POST);
 
     $esc_guid = $db->real_escape_string($_POST["guid"]);
 
