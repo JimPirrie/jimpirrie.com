@@ -5,10 +5,10 @@
                 <div class="p-3 mb-3" style="background-color: whitesmoke; border-radius: 5px;">
                     <div class="row">
                         <div class="col-5">
-                            <div class="box-16x9"  style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                                <div class="box-inner">
-                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
-                                    </div>
+                            <div class="box-border">
+                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                    {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                    <div class="box-inner"><div class="box-content"></div></div>
                                 </div>
                             </div>
                         </div>
