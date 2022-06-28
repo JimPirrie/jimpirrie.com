@@ -142,7 +142,7 @@ function parseVideoPlaceholder(&$body){
 
         $data = json_decode(file_get_contents($oembedUrl));
 
-        $player = "<div>{$data->html}</div>";
+        $player = "<div class='box-border'>{$data->html}</div>";
 
         $body = str_replace($tag, $player, $body);
 
@@ -165,7 +165,7 @@ function getSeoDescription(&$body){
 
     // get the text we want
 
-    $seoDescription = str_replace(["<div class=\"blog-content\">","</div>"], "", substr($body, $firstDivStart, $firstDivEnd-$firstDivStart));
+    $seoDescription = strip_tags(str_replace(["<div class=\"blog-content\">","</div>"], "", substr($body, $firstDivStart, $firstDivEnd-$firstDivStart)));
 
     $body = substr_replace($body, "", $firstDivStart, $firstDivEnd-$firstDivStart);
 
@@ -249,13 +249,12 @@ function stripDateFromTitle($title){
 
 function evernote_parseNote($noteObj){
 
+
     global $db;
 
     $esc_guid = $db->real_escape_string($noteObj->guid);
 
-    $esc_updated = $db->real_escape_string(evernote_parseTitleForDate($noteObj->title));
-
-    $esc_title = stripDateFromTitle($db->real_escape_string($noteObj->title));
+    $esc_title = $db->real_escape_string($noteObj->title);
 
     $esc_seoTitle = strip_tags($esc_title);
 
@@ -264,6 +263,16 @@ function evernote_parseNote($noteObj){
     $esc_slug = str_replace(" ", "-", $esc_slug);
 
     $body = $noteObj->content;
+
+    // get the content length
+
+    //<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div>[[UPDATED  27-6-2022 17:00 ]]</div></en-note>
+
+    $start = strpos($body, "<!DOCTYPE en-note");
+
+    $str = substr($body, $start);
+
+    $esc_contentLength = strlen($str);
 
     // mark up all divs as blog content
 
@@ -290,18 +299,16 @@ function evernote_parseNote($noteObj){
     $tagArr = $noteStore->getNoteTagNames($_SESSION["evernote"]["oauth_token"], $esc_guid);
 
     $esc_tags = implode(";", $tagArr);
-
-    $localNow = localtime(time(),1);
-
     $now = new DateTime("now", new DateTimeZone('Europe/London') );
-    $updated_local = $now->format('Y-m-d H:i:s');
+    $updated_db_local = $now->format('Y-m-d H:i:s');
 
     $q = "UPDATE blogPost SET   slug = \"{$esc_slug}\", 
                                 title = \"$esc_title\", 
                                 seoTitle = \"{$esc_seoTitle}\",
                                 seoDescription = \"{$esc_seoDescription}\",
                                 body = \"{$esc_body}\",
-                                updated_local = \"$updated_local\",
+                                updated_db_local = \"$updated_db_local\",
+                                contentLength = \"$esc_contentLength\",
                                 tags = \";{$esc_tags};\" 
                                 WHERE evernoteGuid = \"{$esc_guid}\"";
     $db->query($q);

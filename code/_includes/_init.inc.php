@@ -14,4 +14,5 @@ global $db;
 $db = new mysqli("localhost", dbKeys("username"), dbKeys("password"), dbKeys("dbName")) or die('Could not connect: ' . mysqli_error($db));
 
 $twigData["isProductionSite"] = isProductionSite();
+$twigData["siteUrl"] = siteurl();
 

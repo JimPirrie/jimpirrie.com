@@ -28,13 +28,15 @@
                     </div>
                     {% for post in sidebarFeaturedList %}
                         <div class="mb-4">
-                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                                <div class="box-inner">
-                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                            <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
+                                <div class="box-border">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                        {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                        <div class="box-inner"><div class="box-content"></div></div>
                                     </div>
                                 </div>
-                            </div>
-                            {{ post.title }}
+                            </a>
+                            <a class="d-block text-center" href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a>
                         </div>
                     {% endfor %}
                 {% endif %}
@@ -58,13 +60,15 @@
                     </div>
                     {% for post in sidebarOtherList %}
                         <div class="mb-4">
-                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-size: contain; background-position: center;">
-                                <div class="box-inner">
-                                    <div class="box-content" style="background-image: url('/_images/{{ post.seoImage }}'); background-size: contain; background-repeat: no-repeat;background-position: center;">
+                            <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
+                                <div class="box-border">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                        {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                        <div class="box-inner"><div class="box-content"></div></div>
                                     </div>
                                 </div>
-                            </div>
-                            {{ post.title }}
+                            </a>
+                            <a class="d-block text-center" href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a>
                         </div>
                     {% endfor %}
                 {% endif %}

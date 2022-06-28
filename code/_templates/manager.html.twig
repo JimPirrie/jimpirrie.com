@@ -58,69 +58,108 @@
             <div class="row">
                 <div class="col-9">
                     {% for post in mainList %}
-                        <div class="p-3 mb-3" style="background-color: {% if post.updateRequired %}red{% else %}lightgray{% endif %}; border-radius: 5px;">
-                            <table class="w-100">
-                                <tr>
-                                    <td class="w-25 align-top" rowspan="3">
-                                        <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
-                                    </td>
-                                    <td class="pl-4 align-top">
-                                        <strong><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}" target="_blank">{{ post.title }}</a></strong><br>
-                                        {{ post.updated_local }}<br>
-                                        {{ post.updateRequired }}<br>
-                                        {{ post.tags }}<br>
-                                        {{ post.slug }}<br>
-                                        {{ post.seoTitle }}<br>
-                                        {{ post.seoDescription }}<br>
-                                        {{ post.evernoteGuid }}
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="p-1 mb-3" style="background-color: {{ post.bgcolor }}; border-radius: 5px;">
                             <div>
-                                <form class="d-inline-block" method="POST">
-                                    <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
-                                    {% if POST.deletePost and POST.guid == post.evernoteGuid %}
-                                        <input class="btn btn-warning d-inline-block" type="submit" name="confirmDeletePost" value="confirm">
-                                        <input class="btn btn-success d-inline-block" type="submit" name="cancel" value="cancel">
-                                    {% else %}
-                                        <input class="btn btn-danger d-inline-block" type="submit" name="deletePost" value="delete">
-                                    {% endif %}
-                                </form>
-                                <form class="d-inline-block float-right" method="POST">
-                                    <input type="hidden" name="id" value="{{ post.blogPost_id }}">
-                                    <input type="hidden" name="update_featured_sidebar" value="1">
-                                    <select class="form-control d-inline-block" style="width: 120px;" name="featured_sidebar" onchange="this.form.submit()">
-                                        <option value="0" {% if post.featured_sidebar == 0 %}selected{% endif %}>sidebar 0</option>
-                                        <option value="1" {% if post.featured_sidebar == 1 %}selected{% endif %}>sidebar 1</option>
-                                        <option value="2" {% if post.featured_sidebar == 2 %}selected{% endif %}>sidebar 2</option>
-                                        <option value="3" {% if post.featured_sidebar == 3 %}selected{% endif %}>sidebar 3</option>
-                                        <option value="4" {% if post.featured_sidebar == 4 %}selected{% endif %}>sidebar 4</option>
-                                        <option value="5" {% if post.featured_sidebar == 5 %}selected{% endif %}>sidebar 5</option>
-                                    </select>
-                                </form>
-                                <form class="d-inline-block float-right mr-2" method="POST">
-                                    <input type="hidden" name="id" value="{{ post.blogPost_id }}">
-                                    <input type="hidden" name="update_featured_main" value="1">
-                                    <select class="form-control d-inline-block" style="width: 120px;" name="featured_main" onchange="this.form.submit()">
-                                        <option value="0" {% if post.featured_main == 0 %}selected{% endif %}>main 0</option>
-                                        <option value="1" {% if post.featured_main == 1 %}selected{% endif %}>main 1</option>
-                                        <option value="2" {% if post.featured_main == 2 %}selected{% endif %}>main 2</option>
-                                        <option value="3" {% if post.featured_main == 3 %}selected{% endif %}>main 3</option>
-                                        <option value="4" {% if post.featured_main == 4 %}selected{% endif %}>main 4</option>
-                                        <option value="5" {% if post.featured_main == 5 %}selected{% endif %}>main 5</option>
-                                    </select>
-                                </form>
-                                <form class="d-inline-block float-right mr-2" method="POST">
-                                    <input type="hidden" name="id" value="{{ post.blogPost_id }}">
-                                    <select class="form-control d-inline-block" style="width: 120px;" name="status" onchange="this.form.submit()">
-                                        <option value="draft">draft</option>
-                                        <option value="published" {% if post.status == "published" %}selected{% endif %}>published</option>
-                                    </select>
-                                </form>
-                                <form class="d-inline-block float-right mr-2" method="POST">
-                                    <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
-                                    <input class="btn btn-primary d-inline-block" type="submit" name="updatePost" value="refresh content">
-                                </form>
+                                <button class="btn btn-info float-right py-0">{{ post.statusSummary }}</button>
+                            </div>
+                            <div class="px-3 pb-3">
+                                <table class="w-100 clear-both">
+                                    <tr>
+                                        <td class="w-25 align-top" rowspan="3">
+                                            <div class="box-border">
+                                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}');">
+                                                    {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                                    <div class="box-inner"><div class="box-content"></div></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="pl-4 align-top py-2">
+                                            <div>
+                                                <strong><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}" target="_blank">{{ post.title }}</a></strong>
+                                            </div>
+                                            <div>
+                                                Tags:
+                                                {% if tagnames %}
+                                                    {%  for tagname in post.tagnames %}
+                                                        <button class="btn btn-primary pl-2 py-0" style="font-size: 12px;">{{ tagname }}</button>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    (no tags)
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                "{{ post.seoDescription | default("(no seo description)") }}"
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td class="pr-2">
+                                                SEO Title:
+                                            </td>
+                                            <td>
+                                                {{ post.seoTitle }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pr-2">
+                                                Canonical:
+                                            </td>
+                                            <td>
+                                                {{ siteUrl }}/blog/{{ post.blogPost_id }}/{{ post.slug }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <form class="d-inline-block" method="POST">
+                                        <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
+                                        {% if POST.deletePost and POST.guid == post.evernoteGuid %}
+                                            <input class="btn btn-warning d-inline-block" type="submit" name="confirmDeletePost" value="confirm">
+                                            <input class="btn btn-success d-inline-block" type="submit" name="cancel" value="cancel">
+                                        {% else %}
+                                            <input class="btn btn-danger d-inline-block" type="submit" name="deletePost" value="delete">
+                                        {% endif %}
+                                    </form>
+                                    <form class="d-inline-block float-right" method="POST">
+                                        <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                        <input type="hidden" name="update_featured_sidebar" value="1">
+                                        <select class="form-control d-inline-block" style="width: 120px;" name="featured_sidebar" onchange="this.form.submit()">
+                                            <option value="0" {% if post.featured_sidebar == 0 %}selected{% endif %}>sidebar 0</option>
+                                            <option value="1" {% if post.featured_sidebar == 1 %}selected{% endif %}>sidebar 1</option>
+                                            <option value="2" {% if post.featured_sidebar == 2 %}selected{% endif %}>sidebar 2</option>
+                                            <option value="3" {% if post.featured_sidebar == 3 %}selected{% endif %}>sidebar 3</option>
+                                            <option value="4" {% if post.featured_sidebar == 4 %}selected{% endif %}>sidebar 4</option>
+                                            <option value="5" {% if post.featured_sidebar == 5 %}selected{% endif %}>sidebar 5</option>
+                                        </select>
+                                    </form>
+                                    <form class="d-inline-block float-right mr-2" method="POST">
+                                        <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                        <input type="hidden" name="update_featured_main" value="1">
+                                        <select class="form-control d-inline-block" style="width: 120px;" name="featured_main" onchange="this.form.submit()">
+                                            <option value="0" {% if post.featured_main == 0 %}selected{% endif %}>main 0</option>
+                                            <option value="1" {% if post.featured_main == 1 %}selected{% endif %}>main 1</option>
+                                            <option value="2" {% if post.featured_main == 2 %}selected{% endif %}>main 2</option>
+                                            <option value="3" {% if post.featured_main == 3 %}selected{% endif %}>main 3</option>
+                                            <option value="4" {% if post.featured_main == 4 %}selected{% endif %}>main 4</option>
+                                            <option value="5" {% if post.featured_main == 5 %}selected{% endif %}>main 5</option>
+                                        </select>
+                                    </form>
+                                    <form class="d-inline-block float-right mr-2" method="POST">
+                                        <input type="hidden" name="id" value="{{ post.blogPost_id }}">
+                                        <select class="form-control d-inline-block" style="width: 120px;" name="status" onchange="this.form.submit()">
+                                            <option value="draft">draft</option>
+                                            <option value="published" {% if post.status == "published" %}selected{% endif %}>published</option>
+                                        </select>
+                                    </form>
+                                    <form class="d-inline-block float-right mr-2" method="POST">
+                                        <input type="hidden" name="guid" value="{{ post.evernoteGuid }}">
+                                        <input class="btn btn-primary d-inline-block" type="submit" name="updatePost" value="refresh content">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -138,22 +177,42 @@
                     </div>
                 </div>
                 <div class="col-3 p-3" style="background-color: lightgray; border-radius: 5px;">
-                    Popular posts
-                    {% for post in sidebarFeaturedList %}
+                    <strong>Popular posts</strong>
+                    {% if sidebarFeaturedList %}
+                        {% for post in sidebarFeaturedList %}
+                            <div>
+                                <div class="box-border">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                        {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                        <div class="box-inner"><div class="box-content"></div></div></div>
+                                </div>
+                                {{ post.title }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div>
-                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
-                            {{ post.title }}
+                            (no posts)
                         </div>
-                    {% endfor %}
+                    {% endif %}
                     <hr>
-                    Posts you might like
-                    {% for post in sidebarOtherList %}
+                    <strong>Posts you might like</strong>
+                    {% if sidebarOtherList %}
+                        {% for post in sidebarOtherList %}
+                            <div>
+                                <div class="box-border">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                        {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                        <div class="box-inner"><div class="box-content"></div></div></div>
+                                </div>
+                                {{ post.title }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div>
-                            <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain"><div class="box-inner"><div class="box-content"></div></div></div>
-                            {{ post.title }}
+                            (no posts)
                         </div>
-                    {% endfor %}
-                </div>
+                    {% endif %}
+                 </div>
             </div>
         </div>
     {% endif %}

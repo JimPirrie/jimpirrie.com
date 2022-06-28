@@ -1,5 +1,9 @@
 <?php
 
+//todo: play button on thumbnails
+//todo: link on thumbnails
+//todo: links in sidebar
+
 if($_GET["tag"]){
 
     $_SESSION["activeTag"] = $db->real_escape_string($_GET["tag"]);
@@ -44,6 +48,12 @@ $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
 
+    if($seoImage = parseVideoPlaceholder($post["body"])){
+
+        $post["seoImage"] = $seoImage;
+        $post["isVideo"] = 1;
+    }
+
     $publishedList[$post["blogPost_id"]] = $post;
 
     $tags.= $post["tags"];
@@ -57,6 +67,12 @@ $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
 
+    if($seoImage = parseVideoPlaceholder($post["body"])){
+
+        $post["seoImage"] = $seoImage;
+        $post["isVideo"] = 1;
+    }
+
     $mainList[$post["blogPost_id"]] = $post;
 }
 
@@ -65,6 +81,12 @@ $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
 
+    if($seoImage = parseVideoPlaceholder($post["body"])){
+
+        $post["seoImage"] = $seoImage;
+        $post["isVideo"] = 1;
+    }
+
     $sidebarFeaturedList[] = $post;
 }
 
@@ -72,6 +94,12 @@ $q = "SELECT * FROM blogPost WHERE {$tagFilter} featured_sidebar = 0 ORDER BY ti
 $rs = $db->query($q);
 
 while($post = $rs->fetch_assoc()){
+
+    if($seoImage = parseVideoPlaceholder($post["body"])){
+
+        $post["seoImage"] = $seoImage;
+        $post["isVideo"] = 1;
+    }
 
     $sidebarOtherList[] = $post;
 }
@@ -96,11 +124,7 @@ if($blogPostId){
 
     $seoTitle = $publishedList[$blogPostId]["seoTitle"];
     $seoDescription = $publishedList[$blogPostId]["seoDescription"];
-
-    if(!$seoImage = parseVideoPlaceholder($post["body"])){
-
-        $seoImage = siteurl()."{$publishedList[$blogPostId]["seoImage"]}";
-    }
+    $seoImage = $publishedList[$blogPostId]["seoImage"];
 
     $seoUrl = "{$blogPostId}/{$blogPostSlug}";
 

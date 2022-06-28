@@ -41,24 +41,30 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
     foreach($notelist->notes AS $note){
 
         $esc_guid = $db->real_escape_string($note->guid);
-        $created = $note->created;
 
-        $updated_en_local = evernote_parseTitleForDate($note);
-
-        $q = "SELECT updated_local FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
+        $q = "SELECT title, contentLength FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
         $rs = $db->query($q);
 
         if($rs->num_rows){
 
+            $updated_UTC = strftime("%Y-%m-%d %H:%M:%S", $note->updated/1000);
+
+            $datetime = new DateTime($updated_UTC, new DateTimeZone('UTC') );
+            $datetime->setTimezone(new DateTimeZone('Europe/London'));
+            $updated_en_local = $datetime->format('Y-m-d H:i:s');
+
             $updated_db_local = $rs->fetch_assoc()["updated_local"];
 
-            if($updated_db_local < $updated_en_local){
+            $updateStatus["$esc_guid"]["updated_en_UTC"] = $updated_UTC;
+            $updateStatus["$esc_guid"]["updated_en_local"] = $updated_en_local;
 
-                $updateRequired["$esc_guid"] = 1;
+            if($updated_db_local >= $updated_en_local){
+
+                $updateStatus["$esc_guid"]["needUpdate"] = 1;
             }
             else{
 
-                $updateRequired["$esc_guid"] = 0;
+                $updateStatus["$esc_guid"]["needUpdate"] = 0;
             }
         }
         else{
@@ -68,8 +74,6 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
             $notCreatedYet["{$esc_guid}"] = stripDateFromTitle($note->title);
         }
     }
-
-
 }
 
 if($_POST["authorize"]){
@@ -289,24 +293,77 @@ if($_SESSION["login"]["status"] == "logged-in" AND $_SESSION["evernote"]["oauth_
     $i = 0;
     while($post = $rs->fetch_assoc()){
 
+        if($seoImage = parseVideoPlaceholder($post["body"])){
+
+            $post["seoImage"] = $seoImage;
+            $post["isVideo"] = 1;
+        }
+
         $mainList[$i] = $post;
-        $mainList[$i]["updateRequired"] = $updateRequired["{$post["evernoteGuid"]}"];
+        $mainList[$i]["updateStatus"] = $updateStatus["{$post["evernoteGuid"]}"];
+
+
+        if($post["status"] == "draft"){
+
+            if($updateStatus["{$post["evernoteGuid"]}"]["needUpdate"]){
+
+                $bgcolor = "yellow";
+                $statusSummary = "draft, needs updating";
+            }
+            else{
+
+                $bgcolor = "orange";
+                $statusSummary = "draft, updated";
+            }
+        }
+        else{
+
+            if($updateStatus["{$post["evernoteGuid"]}"]["needUpdate"]){
+
+                $bgcolor = "red";
+                $statusSummary = "published, needs updating";
+            }
+            else{
+
+                $bgcolor = "lightgreen";
+                $statusSummary = "published, updated";
+            }
+        }
+
+
+        $tagnames = array_filter(explode(";", $post["tags"]));
+
+        $mainList[$i]["tagnames"] = $tagnames;
+        $mainList[$i]["bgcolor"] = $bgcolor;
+        $mainList[$i]["statusSummary"] = $statusSummary;
 
         $i++;
     }
 
-    $q = "SELECT * FROM blogPost WHERE featured_sidebar > 0 ORDER BY featured_sidebar";
+    $q = "SELECT * FROM blogPost WHERE status = \"published\" AND featured_sidebar > 0 ORDER BY featured_sidebar";
     $rs = $db->query($q);
 
     while($post = $rs->fetch_assoc()){
+
+        if($seoImage = parseVideoPlaceholder($post["body"])){
+
+            $post["seoImage"] = $seoImage;
+            $post["isVideo"] = 1;
+        }
 
         $sidebarFeaturedList[] = $post;
     }
 
-    $q = "SELECT * FROM blogPost WHERE featured_sidebar = 0 ORDER BY title";
+    $q = "SELECT * FROM blogPost WHERE status = \"published\" AND featured_sidebar = 0 ORDER BY title";
     $rs = $db->query($q);
 
     while($post = $rs->fetch_assoc()){
+
+        if($seoImage = parseVideoPlaceholder($post["body"])){
+
+            $post["seoImage"] = $seoImage;
+            $post["isVideo"] = 1;
+        }
 
         $sidebarOtherList[] = $post;
     }

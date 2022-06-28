@@ -275,11 +275,33 @@ a:hover{
 
     height: 0;
     overflow: hidden;
-    padding-top: 56%;
+    padding-top: 56.25%;
     background: darkslategray;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     position: relative;
-    border: solid dodgerblue 5px;
     color: whitesmoke;
+    z-index: 0;
+}
+
+.videoThumbnailOverlay{
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom:0;
+    left: 0;
+    background-image: url("/_images/videoPlayOverlay_normal.png");
+    z-index: 20;
+}
+
+.videoThumbnailOverlay:hover{
+
+    background-image: url("/_images/videoPlayOverlay_hover.png");
 }
 
 .box-inner{
@@ -297,6 +319,11 @@ a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.box-border{
+
+    border: solid dodgerblue 3px;
 }
 
 .page-banner{
