@@ -42,7 +42,7 @@ if(!$_POST AND $_SESSION["login"]["status"] == "logged-in" AND $_SESSION["everno
 
         $esc_guid = $db->real_escape_string($note->guid);
 
-        $q = "SELECT title, contentLength FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
+        $q = "SELECT blogPost_id FROM blogPost WHERE evernoteGuid = \"$esc_guid\"";
         $rs = $db->query($q);
 
         if($rs->num_rows){
