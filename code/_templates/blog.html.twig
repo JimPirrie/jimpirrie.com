@@ -11,11 +11,23 @@
                 {% endif %}
             </div>
         </div>
+        {% if tags %}
+            <div class="row d-block d-lg-none">
+                <div class="col text-center pb-3">
+                    {% for tag in tags %}
+                        <a class="btn {% if activeTag == tag %}btn-success{% else %}btn-primary{% endif %} d-inline-block mx-1 px-1 py-0" style="font-size: 12px;" href="/blog/?tag={{ tag }}">{{ tag }}</a>
+                    {% endfor %}
+                    {% if activeTag %}
+                        <a class="btn btn-warning d-inline-block mx-1 px-1 py-0" style="font-size: 12px;" href="/blog/?cleartags=1">clear tags</a>
+                    {% endif %}
+                 </div>
+            </div>
+        {% endif %}
         <div class="row">
-            <div class="col-9">
+            <div class="col-12 col-lg-9">
                 {% include(contentTemplate) %}
             </div>
-            <div class="col-3 blog-sidebar">
+            <div class="col-3 blog-sidebar d-none d-lg-block">
                 <strong>Follow Jim</strong>
                 <div class="text-center">
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -27,7 +39,7 @@
                         <strong>Popular posts</strong>
                     </div>
                     {% for post in sidebarFeaturedList %}
-                        <div class="mb-4">
+                        <div class="mb-4 blog-sidebar-item">
                             <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
                                 <div class="box-border">
                                     <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
@@ -59,7 +71,7 @@
                         <strong>Posts you might like</strong>
                     </div>
                     {% for post in sidebarOtherList %}
-                        <div class="mb-4">
+                        <div class="blog-sidebar-item mb-4">
                             <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
                                 <div class="box-border">
                                     <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
@@ -74,6 +86,52 @@
                 {% endif %}
             </div>
         </div>
+        {% if sidebarFeaturedList %}
+            <div class="row d-block d-lg-none">
+                <div class="col">
+                    <hr>
+                    <strong>Popular posts</strong>
+                </div>
+            </div>
+            <div class="row d-block d-lg-none">
+                {% for post in sidebarFeaturedList %}
+                    <div class="blog-sidebar-item col-6 col-md-4 mb-4">
+                        <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
+                            <div class="box-border">
+                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                    {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                    <div class="box-inner"><div class="box-content"></div></div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="d-block text-center" style="font-size: 12px;" href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if sidebarOtherList %}
+            <div class="row d-block d-lg-none">
+                <div class="col">
+                    <hr>
+                    <strong>Posts you might like</strong>
+                </div>
+            </div>
+            <div class="row d-block d-lg-none">
+                {% for post in sidebarOtherList %}
+                    <div class="blog-sidebar-item col-6 col-md-4 mb-4">
+                        <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
+                            <div class="box-border">
+                                <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                    {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                    <div class="box-inner"><div class="box-content"></div></div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="d-block text-center" href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
     <div style="height: 200px;"></div>
 {% endblock %}

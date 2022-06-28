@@ -433,6 +433,12 @@ a:hover{
     background-color: lightgray;
 }
 
+.blog-sidebar-item{
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .blog-byline{
 
     padding: 30px 0;
