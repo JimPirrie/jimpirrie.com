@@ -1,9 +1,5 @@
 <?php
 
-//todo: play button on thumbnails
-//todo: link on thumbnails
-//todo: links in sidebar
-
 if($_GET["tag"]){
 
     $_SESSION["activeTag"] = $db->real_escape_string($_GET["tag"]);
