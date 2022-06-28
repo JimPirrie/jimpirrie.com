@@ -22,11 +22,11 @@
     <meta name="twitter:creator" content="@jimpirrie">
 
     <!-- JQuery and Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
@@ -50,6 +50,60 @@
             })(window,document,'script','dataLayer','GTM-55WM35W');</script>
         <!-- End Google Tag Manager -->
     {% endif %}
+
+    <!--BEGIN Call Me Back Web Site Code-->
+    <script type="text/javascript">
+        var popWin = null // use this when referring to pop-up window
+        var winCount = 0
+        var winName = "popWin"
+
+        function openPopWin(winURL, winWidth, winHeight, winFeatures, winLeft, winTop) {
+            var d_winLeft = 20 // default, pixels from screen left to window left
+            var d_winTop = 20 // default, pixels from screen top to window top
+            winName = "popWin" + winCount++ //unique name for each pop-up window
+            closePopWin() // close any previously opened pop-up window
+            if (openPopWin.arguments.length >= 4) // any additional features?
+                winFeatures = "," + winFeatures
+            else
+                winFeatures = ""
+            if (openPopWin.arguments.length == 6) // location specified
+                winFeatures += getLocation(winWidth, winHeight, winLeft, winTop)
+            else
+                winFeatures += getLocation(winWidth, winHeight, d_winLeft, d_winTop)
+            popWin = window.open(winURL, winName, "width=" + winWidth +
+                ",height=" + winHeight + winFeatures)
+        }
+
+        function closePopWin() { // close pop-up window if it is open
+            if (navigator.appName != "Microsoft Internet Explorer" ||
+                parseInt(navigator.appVersion) >= 4) //do not close if early IE
+                if (popWin != null)
+                    if (!popWin.closed) popWin.close()
+        }
+
+        function getLocation(winWidth, winHeight, winLeft, winTop) {
+            return ""
+        }
+
+        function getLocation(winWidth, winHeight, winLeft, winTop) {
+            var winLocation = ""
+            if (winLeft < 0)
+                winLeft = screen.width - winWidth + winLeft
+            if (winTop < 0)
+                winTop = screen.height - winHeight + winTop
+            if (winTop == "cen")
+                winTop = (screen.height - winHeight) / 2 - 20
+            if (winLeft == "cen")
+                winLeft = (screen.width - winWidth) / 2
+            if (winLeft > 0 && winTop > 0)
+                winLocation = ",screenX=" + winLeft + ",left=" + winLeft +
+                    ",screenY=" + winTop + ",top=" + winTop
+            else
+                winLocation = ""
+            return winLocation
+        }
+    </script>
+    <!--END Call Me Back Web Site Code-->
 </head>
 <body>
 <!-- facebook comments plugin -->
@@ -61,34 +115,87 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="header"></div>
-<nav id="header" class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand p-0" href="/"><img class="d-none d-md-block" id="logo" style="height: 108px;" src="/_images/Jim-Pirrie-black-high-res.png"><img id="logoSmall" class="d-block d-md-none" style="height: 50px;" src="/_images/Jim-Pirrie-black-high-res.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item {{ active.coaching }} text-center">
-                <a class="nav-link" href="/coaching">Professional Development Coaching</a>
-            </li>
-            <li class="nav-item {{ active.workshops }} text-center">
-                <a class="nav-link" href="/workshops">Professional Development Workshops</a>
-            </li>
-            <li class="nav-item {{ active.resources }} text-center">
-                <a class="nav-link" href="/resources">Resources</a>
-            </li>
-            <li class="nav-item {{ active.clients }} text-center">
-                <a class="nav-link" href="/clients">Clients</a>
-            </li>
-            <li class="nav-item {{ active.contact }} text-center">
-                <a class="nav-link" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item {{ active.blog }} text-center">
-                <a class="nav-link" href="/blog">Blog</a>
-            </li>
-        </ul>
+<div id="header" class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand p-0" href="/">
+            <img class="d-none d-xl-block" style="height: 108px;" id="logo" src="/_images/Jim-Pirrie-black-high-res.png">
+            <img class="d-block d-xl-none" style="height: 80px;" id="logoMedium" src="/_images/Jim-Pirrie-black-high-res.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item {{ active.coaching }} text-center">
+                    <a class="nav-link" href="/coaching">Professional Development Coaching</a>
+                </li>
+                <li class="nav-item {{ active.workshops }} text-center">
+                    <a class="nav-link" href="/workshops">Professional Development Workshops</a>
+                </li>
+                <li class="nav-item {{ active.resources }} text-center">
+                    <a class="nav-link" href="/resources">Resources</a>
+                </li>
+                <li class="nav-item {{ active.clients }} text-center">
+                    <a class="nav-link" href="/clients">Clients</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link {{ active.blog }}" href="/blog">Blog</a>
+                </li>
+            </ul>
+            <div class="d-block mx-auto" style="width: 200px;">
+                <a href="javascript:openPopWin('http://www.callmeback.org/callmeback.php?code=58024ed2c17ede17', 350, 400, '', 20, 20);">
+                    <button class="btn btn-success">
+                        <table style="width: 180px;">
+                            <tr>
+                                <td>
+                                    <i class="fa-solid fa-phone-arrow-down-left" style="font-size: 25px;"></i>
+                                </td>
+                                <td>
+                                    <div class="ps-4 text-start">
+                                        request a<br>free callback
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
-</nav>
+    <div>
+    </div>
+</div>
+{#
+<div id="header" class="fixed-top" style="background-color: blue;">
+    <div class="float-right" style="background-color: red;">
+        nav
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item {{ active.coaching }} text-center">
+
+                </li>
+                <li class="nav-item {{ active.workshops }} text-center">
+
+                </li>
+                <li class="nav-item {{ active.resources }} text-center">
+
+                </li>
+                <li class="nav-item {{ active.clients }} text-center">
+
+                </li>
+                <li class="nav-item {{ active.contact }} text-center">
+
+                </li>
+                <li class="nav-item {{ active.blog }} text-center">
+
+                </li>
+            </ul>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>#}
 {% block content %}{% endblock %}
 <div class="footer">
     <div class="container">

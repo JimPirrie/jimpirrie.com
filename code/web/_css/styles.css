@@ -63,8 +63,7 @@ a:hover{
 
 .header{
 
-    background-color: rgba(245, 245, 245, 1);
-    height: 140px;
+    height: 120px;
 }
 
 .modalTriggerSpan{
@@ -90,20 +89,23 @@ a:hover{
 
 .navbar{
 
-    background-color: rgba(245, 245, 245, 0.8);
+    background-color: rgba(245, 245, 245, 0.95);
     font-weight: 300;
     height: 120px;
     border-bottom: solid lightgray 1px;
 }
 
-#navbarNavDropdown{
+
+
+#navbarSupportedContent{
 
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: rgba(100, 100, 100, 0.9);
+    border-radius: 5px;
 }
 
-#navbarNavDropdown .active>.nav-link{
+.active{
 
     font-weight: 500!important;
 }
@@ -488,7 +490,7 @@ ul, ol{
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
 
-    #navbarNavDropdown{
+    #navbarSupportedContent{
 
         padding-top: 0;
         padding-bottom: 0;

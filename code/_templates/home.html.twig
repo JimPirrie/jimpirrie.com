@@ -1,18 +1,18 @@
 {% extends "_page.html.twig" %}
 {% block content %}
-    <div id="carousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-            <li data-target="#carousel" data-slide-to="3"></li>
-            <li data-target="#carousel" data-slide-to="4"></li>
-            <li data-target="#carousel" data-slide-to="5"></li>
-            <li data-target="#carousel" data-slide-to="6"></li>
-            <li data-target="#carousel" data-slide-to="7"></li>
-        </ol>
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+        </div>
         <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="2000" style="background-image: url('/_images/carousel-waterfall.png'); background-size: cover;">
+            <div class="carousel-item active" data-bs-interval="5000" style="background-image: url('/_images/carousel-waterfall.png'); background-size: cover;">
                 <div class="carousel-caption">
                     <div id="carousel_0" class="carousel-caption-content">
                         <h5>Welcome</h5>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-seacliff.png');">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-seacliff.png');">
                 <div class="carousel-caption">
                     <div id="carousel_1" class="carousel-caption-content" style="display: none;">
                         <h5>Book your Free Professional Development Coaching Call Now...</h5>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-forest-path.png');">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-forest-path.png');">
                 <div class="carousel-caption">
                     <div id="carousel_2" class="carousel-caption-content" style="display: none;">
                         <h5>Clients</h5>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-seacliff.png');">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-seacliff.png');">
                 <div class="carousel-caption">
                     <div id="carousel_3" class="carousel-caption-content" style="display: none;">
                         <h5>Book your Free Professional Development Coaching Call Now...</h5>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-island.png'); background-size: cover;">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-island.png'); background-size: cover;">
                 <div class="carousel-caption">
                     <div id="carousel_4" class="carousel-caption-content" style="display: none;">
                         <h5>Professional Development Coaching</h5>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-seacliff.png');">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-seacliff.png');">
                 <div class="carousel-caption">
                     <div id="carousel_5" class="carousel-caption-content" style="display: none;">
                         <h5>Book your Free Professional Development Coaching Call Now...</h5>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-viaduct.png'); background-size: cover;">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-viaduct.png'); background-size: cover;">
                 <div class="carousel-caption">
                     <div id="carousel_6" class="carousel-caption-content" style="display: none;">
                         <h5>Professional Development Workshops</h5>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item" data-interval="2000" style="background-image: url('/_images/carousel-seacliff.png');">
+            <div class="carousel-item" data-bs-interval="5000" style="background-image: url('/_images/carousel-seacliff.png');">
                 <div class="carousel-caption">
                     <div id="carousel_7" class="carousel-caption-content" style="display: none;">
                         <h5>Book your Free Professional Development Coaching Call Now...</h5>
@@ -85,13 +85,13 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
     <div class="content">
