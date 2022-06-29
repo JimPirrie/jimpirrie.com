@@ -15,4 +15,5 @@ $db = new mysqli("localhost", dbKeys("username"), dbKeys("password"), dbKeys("db
 
 $twigData["isProductionSite"] = isProductionSite();
 $twigData["siteUrl"] = siteurl();
+$twigData["year"] = strftime("%Y", time());
 

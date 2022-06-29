@@ -1,0 +1,84 @@
+{% extends "_page.html.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col page-banner" style="background-image: url('/_images/carousel-island.png');">
+            <div class="page-banner-content">
+                <h1>Professional Development Coaching</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 pt-3" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <a href="/">home</a> <i class="fa-regular fa-arrow-right-long"></i> <strong>schedule a call</strong>
+            </div>
+            <div class="col-12 col-lg-4">
+                <table class="float-right">
+                    <tr>
+                        <td>
+                            <strong>Follow Jim:</strong>
+                        </td>
+                        <td>
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_inline_follow_toolbox d-inline-block"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#free-15">
+                    Free 15
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#free-60">
+                    Free 60
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Modals -->
+    <div class="modal fade" id="free-15" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="text-end">
+                    <button class="btn modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <h5 class="text-center mx-4">Use Calendly to schedule a<br>free 15-minute call<br>with Jim Pirrie...</h5>
+                <div class="text-center">
+                    (no account required)
+                </div>
+                <div class="modal-body">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/jimpirrie/free-15?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:630px;"></div>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="free-60" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="text-end">
+                    <button class="btn modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <h5 class="text-center mx-4">Use Calendly to schedule a<br>free 60-minute coaching call<br>with Jim Pirrie...</h5>
+                <div class="text-center">
+                    (no account required)
+                </div>
+                <div class="modal-body">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/jimpirrie/free-60-coaching?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:630px;"></div>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+{% endblock %}
