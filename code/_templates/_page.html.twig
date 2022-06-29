@@ -135,13 +135,16 @@
                     <a class="nav-link" href="/workshops">Professional Development Workshops</a>
                 </li>
                 <li class="nav-item {{ active.resources }} text-center">
-                    <a class="nav-link" href="/resources">Resources</a>
+                    <a class="nav-link" href="/resources">Free Stuff</a>
                 </li>
                 <li class="nav-item {{ active.contact }} text-center">
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link {{ active.blog }}" href="/blog">Blog</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="https://jimpirrie.mvault.net" target="_blank">Login</a>
                 </li>
             </ul>
             <div class="d-block mx-auto" style="width: 200px;">
@@ -170,6 +173,48 @@
 {% block content %}{% endblock %}
 <div class="footer">
     <div class="container">
+        <div class="row">
+            <div class="col pt-5">
+                <div class="text-center" style="font-size: 30px;">
+                    <i class="fa-regular fa-phone"></i> 08000 337 558
+                </div>
+                <table class="m-auto mt-4">
+                    <tr>
+                        <td>
+                            <a href="javascript:openPopWin('http://www.callmeback.org/callmeback.php?code=58024ed2c17ede17', 350, 400, '', 20, 20);">
+                                <button class="btn btn-success">
+                                    <table style="width: 230px;">
+                                        <tr>
+                                            <td>
+                                                <i class="fa-solid fa-phone-arrow-down-left" style="font-size: 25px;"></i>
+                                            </td>
+                                            <td>
+                                                <div class="ps-4 text-start">
+                                                    request a free callback
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <p class="text-center pt-4" style="font-size: 20px;">
+                    <i class="fa-regular fa-envelope"></i> <a href="mailto:Jim Pirrie<jim@jimpirrie.com>">welcome@jimpirrie.com</a>
+                </p>
+                <table class="mx-auto mt-3">
+                    <tr>
+                        <td class="pe-2" style="font-size: 20px;">
+                            Follow Jim:
+                        </td>
+                        <td>
+                            <div class="addthis_inline_follow_toolbox_t2hu"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 py-5 pl-2">
                 <table>
@@ -206,30 +251,6 @@
                         </td>
                         <td class="pl-2 pb-2">
                             <a href="/contact">Free 15-minute Quick Chat</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-duotone fa-blog" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2" colspan="2">
-                            <a href="https://coaching.jimpirrie.com">Blog</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-duotone fa-user-vneck" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2" colspan="2">
-                            <a href="about">About Jim Pirrie</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-duotone fa-users" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2" colspan="2">
-                            <a href="/clients">Clients</a>
                         </td>
                     </tr>
                 </table>
@@ -304,62 +325,40 @@
                 <table>
                     <tr>
                         <td class="text-center pb-2">
-                            <i class="fa-brands fa-linkedin" style="font-size: 25px;"></i>
+                            <i class="fa-duotone fa-blog" style="font-size: 25px;"></i>
                         </td>
-                        <td class="pl-2 pb-2">
-                            linkedin.com/in/jimpirrie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-brands fa-facebook-square" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2">
-                            facebook.com/jimpirriecoaching
+                        <td class="pl-2 pb-2" colspan="2">
+                            <a href="https://coaching.jimpirrie.com">Blog</a>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center pb-2">
-                            <i class="fa-brands fa-youtube" style="font-size: 25px;"></i>
+                            <i class="fa-duotone fa-user-vneck" style="font-size: 25px;"></i>
                         </td>
-                        <td class="pl-2 pb-2">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-brands fa-twitter" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2">
+                        <td class="pl-2 pb-2" colspan="2">
+                            <a href="about">About Jim Pirrie</a>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center pb-2">
-                            <i class="fa-brands fa-instagram" style="font-size: 25px;"></i>
+                            <i class="fa-duotone fa-users" style="font-size: 25px;"></i>
                         </td>
-                        <td class="pl-2 pb-2">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2">
-                            <i class="fa-brands fa-tiktok" style="font-size: 25px;"></i>
-                        </td>
-                        <td class="pl-2 pb-2">
+                        <td class="pl-2 pb-2" colspan="2">
+
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center pb-2">
-                            <i class="fa-duotone fa-square-phone" style="font-size: 25px;"></i>
                         </td>
-                        <td class="pl-2 pb-2">
-                            08000 337 558
+                        <td class="pl-2 pb-2" colspan="2">
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center pb-2">
-                            <i class="fa-duotone fa-envelope" style="font-size: 25px;"></i>
+                            <i class="fa-duotone fa-lock-keyhole" style="font-size: 25px;"></i>
                         </td>
-                        <td class="pl-2 pb-2">
-                            welcome@jimpirrie.com
+                        <td class="pl-2 pb-2" colspan="2">
+                            <a href="https://jimpirrie.mvault.net">Login</a>
                         </td>
                     </tr>
                 </table>
@@ -381,21 +380,6 @@
                     Copyright &copy; Jim Pirrie Limited 2001-{{ year }}
                 </p>
                 <div style="height: 50px;"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade p-5" id="list" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Join my Mailing List...</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-5">
-                [mailing list form goes here]
             </div>
         </div>
     </div>

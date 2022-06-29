@@ -1,5 +1,13 @@
 <?php
 
+//todo: testimonials
+//todo: ActiveCampaign
+//todo: login
+//todo remove blog from mvault
+//todo move mvault login page to home
+//todo: use mv blog layout as model for minicourse ad
+//todo: fix blog post format on mobile
+
 require_once("init.php");
 
 if(strpos(" ".$_SERVER["HTTP_HOST"], "professionaldevelopmentcoach")){
