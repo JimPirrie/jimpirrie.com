@@ -2,7 +2,7 @@
     <div class="col ps-0">
         {% if mainList %}
             {% for post in mainList %}
-                <div class="p-3 mb-3" style="background-color: whitesmoke; border-radius: 5px;">
+                <div class="p-3 mb-3 d-none d-md-block" style="background-color: whitesmoke; border-radius: 5px;">
                     <div class="row">
                         <div class="col-5">
                             <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
@@ -15,6 +15,27 @@
                             </a>
                         </div>
                         <div class="col-7 pe-5">
+                            <h5><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a></h5>
+                            <p>
+                                "{{ post.seoDescription }}"
+                            </p>
+                            <p class="text-right">
+                                <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">read more...</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 mb-3 d-block d-md-none" style="background-color: whitesmoke; border-radius: 5px;">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">
+                                <div class="box-border">
+                                    <div class="box-16x9" style="background-image: url('{{ post.seoImage }}'); background-repeat: no-repeat; background-position: center; background-size: contain">
+                                        {% if post.isVideo %}<div class="videoThumbnailOverlay"></div>{% endif %}
+                                        <div class="box-inner"><div class="box-content"></div></div>
+                                    </div>
+                                </div>
+                            </a>
                             <h5><a href="/blog/{{ post.blogPost_id }}/{{ post.slug }}">{{ post.title }}</a></h5>
                             <p>
                                 "{{ post.seoDescription }}"
