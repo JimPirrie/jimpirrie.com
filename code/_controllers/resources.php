@@ -4,4 +4,4 @@ $twigData["seo"]["title"] = "Professional Development Coaching | Jim Pirrie Coac
 $twigData["seo"]["description"] = "";
 $twigData["seo"]["image"] = "";
 
-$twigData["active"]["coaching"] = "active";
+$twigData["active"]["resources"] = "active";
