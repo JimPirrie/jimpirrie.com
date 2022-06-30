@@ -118,6 +118,8 @@ if($blogPostId){
 
     $post = $publishedList[$blogPostId];
 
+    $post["updatedHuman"] = strftime("%d %B %Y", strtotime($post["updated_db_local"]));
+
     $seoTitle = $publishedList[$blogPostId]["seoTitle"];
     $seoDescription = $publishedList[$blogPostId]["seoDescription"];
     $seoImage = $publishedList[$blogPostId]["seoImage"];

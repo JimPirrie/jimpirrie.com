@@ -1,12 +1,9 @@
 <?php
 
 //todo: testimonials
-//todo: ActiveCampaign
-//todo: login
 //todo remove blog from mvault
 //todo move mvault login page to home
 //todo: use mv blog layout as model for minicourse ad
-//todo: fix blog post format on mobile
 
 require_once("init.php");
 
@@ -31,6 +28,10 @@ else{
         if(strpos(" ".$controller, "blog")){
 
             $controller = "blog";
+        }
+        elseif(strpos(" ".$controller, "thank-you")){
+
+            $controller = "thank-you";
         }
 
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";

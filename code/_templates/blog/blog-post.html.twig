@@ -1,53 +1,58 @@
 <div class="row">
-    <div class="col ps-0 pe-3">
-        <div class="px-5" style="background-color: whitesmoke; border-radius: 5px; padding-bottom: 150px;">
-            <h1>{{ post.title }}</h1>
-            <div class="blog-byline">
-                <div class="blog-authorImg">
-                    <img class="img-fluid" src="/_images/JimPirrie-52_circle_300.png">
-                </div>
+    <div class="col ps-0 pe-0 pe-lg-3">
+        <div class="p-2 p-md-5" style="background-color: whitesmoke; border-radius: 5px; padding-bottom: 150px;">
+            <div class="pt-3 px-3 px-md-5 pb-5" style="border: solid gray 1px; border-radius: 5px;">
                 <div class="blog-lede">
+                    <p>
+                        {{ now | date("d F Y") }}
+                    </p>
+                    <p class="mb-4">
+                        From the desk of Jim Pirrie
+                    </p>
+                    <img class="blog-authorImg pe-2 pe-md-4" src="/_images/JimPirrie-52_circle_300.png">
                     "{{ post.seoDescription }}"
-                    <div class="py-3 ps-5">
-                        <img style="height: 80px;" src="/_images/Jim-underline-black-high-res.png">
-                    </div>
-                    <table style="font-size: 16px;">
+                </div>
+                <div>
+                    <img class="d-block float-end mt-2" style="height: 80px;" src="/_images/Jim-underline-black-high-res.png">
+                </div>
+                <div class="py-3 blog-ps m-auto" style="clear: both; width: 350px;">
+                    PS - pls share w/ your <br><span class="d-inline-block" style="padding-left: 80px;">colleagues & friends!</span>
+                </div>
+                <div class="text-center">
+                    <table class="m-auto">
                         <tr>
-                            <td rowspan="2" style="width: 0;" class="align-top pe-3">
-                                <strong>PS:</strong>
-                            </td>
                             <td>
-                                Please share this with your colleagues and friends...
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center pt-2">
                                 <div class="addthis_inline_share_toolbox_rlvb"></div>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div style="clear: both; height: 30px;"></div>
             </div>
-            <div>
+            <div class="blog-title">
+                {{ post.title }}
+            </div>
+            <p>
+                By <a href="/about">Jim Pirrie</a>, {{ post.updatedHuman }}
+            </p>
+            <div class="blog-body">
                 {{ post.body | raw }}
-                <div id="disqus_thread"></div>
-                <script>
-                    /**
-                     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                    var disqus_config = function () {
-                    this.page.url = '{{ seo.canonical }}';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = 'jimpirrie_blog_{{ post.blogPost_id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                    };
-                    (function() { // DON'T EDIT BELOW THIS LINE
-                        var d = document, s = d.createElement('script');
-                        s.src = 'https://jimpirrie.disqus.com/embed.js';
-                        s.setAttribute('data-timestamp', +new Date());
-                        (d.head || d.body).appendChild(s);
-                    })();
-                </script>
             </div>
+            <div id="disqus_thread"></div>
+            <script>
+                /**
+                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                var disqus_config = function () {
+                this.page.url = '{{ seo.canonical }}';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = 'jimpirrie_blog_{{ post.blogPost_id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://jimpirrie.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
         </div>
     </div>
 </div>
