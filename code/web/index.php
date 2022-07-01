@@ -4,6 +4,13 @@
 //todo remove blog from mvault
 //todo move mvault login page to home
 //todo: use mv blog layout as model for minicourse ad
+//todo: home page video
+//todo: thankyou page video
+//todo: welcome sequence emails
+//todo: gift #1
+//todo: gift #2
+//todo: gift #3
+
 
 require_once("init.php");
 
