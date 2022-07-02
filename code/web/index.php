@@ -36,9 +36,9 @@ else{
 
             $controller = "blog";
         }
-        elseif(strpos(" ".$controller, "thank-you")){
+        elseif(strpos(" ".$controller, "success")){
 
-            $controller = "thank-you";
+            $controller = "success";
         }
 
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";

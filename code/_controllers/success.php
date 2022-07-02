@@ -14,7 +14,7 @@ if(sizeof($parts) > 2){
 
 if($what == "list"){
 
-    
+
 }
 
 $tomorrow = strftime("%A", strtotime("tomorrow"));
