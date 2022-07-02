@@ -12,9 +12,9 @@ if(sizeof($parts) > 2){
     $twigData["contentTemplate"] = "{$what}";
 }
 
-if($what == "newsletter"){
+if($what == "list"){
 
-    $message = "welcome to our community";
+    
 }
 
 $tomorrow = strftime("%A", strtotime("tomorrow"));
