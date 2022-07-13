@@ -40,6 +40,10 @@ else{
 
             $controller = "success";
         }
+        elseif(strpos(" ".$controller, "free")){
+
+            $controller = "free";
+        }
 
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
 
