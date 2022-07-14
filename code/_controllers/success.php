@@ -8,13 +8,7 @@ $blogPostId = 0;
 
 if(sizeof($parts) > 2){
 
-    $what = $parts[2];
-    $twigData["contentTemplate"] = "{$what}";
-}
-
-if($what == "list"){
-
-
+    $twigData["mv_ref"] = $parts[2];
 }
 
 $tomorrow = strftime("%A", strtotime("tomorrow"));
