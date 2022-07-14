@@ -8,7 +8,9 @@ $parts = explode("/", $path);
 $tomorrow = strftime("%A", strtotime("tomorrow"));
 $dayAfterTomorrow = strftime("%A", strtotime("tomorrow +1"));
 
-$twigData["mv-ref"] = $parts[2];
+print_r($parts);
+
+$twigData["mv-ref"] = "P2".$parts[2];
 $twigData["tomorrow"] = $tomorrow;
 $twigData["dayAfterTomorrow"] = $dayAfterTomorrow;
 
