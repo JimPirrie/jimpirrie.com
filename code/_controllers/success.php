@@ -4,6 +4,8 @@ $path = parse_url($_GET["actualRequest"])["path"];
 
 $parts = explode("/", $path);
 
+print_r($parts);
+
 $twigData["mv_ref"] = $parts[1];
 
 $tomorrow = strftime("%A", strtotime("tomorrow"));
