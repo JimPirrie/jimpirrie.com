@@ -4,9 +4,7 @@ $path = parse_url($_GET["actualRequest"])["path"];
 
 $parts = explode("/", $path);
 
-print_r($parts);
-
-$twigData["mv_ref"] = $parts[1];
+$twigData["mv-ref"] = $parts[2];
 
 $tomorrow = strftime("%A", strtotime("tomorrow"));
 $dayAfterTomorrow = strftime("%A", strtotime("tomorrow +1"));
