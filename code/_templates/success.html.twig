@@ -1,6 +1,14 @@
 {# this page is the framework: content is in the included file #}
 {% extends "_page.html.twig" %}
 {% block content %}
+    <div class="row">
+        <div class="col page-banner" style="height: 300px;background-image: url('/_images/carousel-waterfall.png');">
+            <div class="page-banner-content">
+                <h4 class="pt-5"><span class="mv-dynamic mv-item-type" data-ref="{{ mv_ref }}"></span></h4>
+                <h1 class="pt-2"><span class="mv-dynamic mv-item-name" data-ref="{{ mv_ref }}"></span></h1>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8 pt-3" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
