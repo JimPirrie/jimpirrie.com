@@ -24,8 +24,8 @@
     <div class="row">
         <div class="col">
             MV_REF: {{ mv_ref }}<br>
-            MV_NAME_PUBLIC: <span class="mv-name-public"></span><br>
-            MV_WHAT: <span class="mv-what"></span>
+            MV_NAME_PUBLIC: <span class="mv-dynamic" data-ref="{{ mv_ref }}" data-what="item-name"></span><br>
+            MV_WHAT: <span class="mv-dynamic" data-ref="{{ mv_ref }}" data-what="item-type"></span>
         </div>
     </div>
 {% endblock %}
