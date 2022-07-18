@@ -42,21 +42,17 @@
                 </ul>
             </div>
         </div>
-        <div class="row mv-leadmagnet">
-            <div class="col pt-5" style="border: solid gray 1px; border-radius: 10px;">
-                <div class="w-25 float-left mr-3 mb-3">
-                    <div class="col" style="padding: 0 5% 0 5%;">
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <h3 class="d-md-none"><span class="mv-item-name"></span></h3>
-                                <img class="mv-item-image img-fluid">
-                                <div class="mv-item-description py-3 d-md-none"></div>
-                            </div>
-                            <div class="d-none d-md-block col-9">
-                                <h3><span class="mv-item-name" data-ref="{{ mv_ref }}"></span></h3>
-                                <div class="mv-item-description py-3"></div>
-                            </div>
-                        </div>
+        <div class="row mv-leadmagnet mt-5">
+            <div class="col" style="padding: 0 5% 0 5%;">
+                <div class="row px-2 py-5 px-md-5" style="border: solid gray 1px; border-radius: 10px;">
+                    <div class="col col-md-3">
+                        <h3 class="d-md-none"><span class="mv-dynamic mv-item-name" data-ref="{{ mv_ref }}"></span></h3>
+                        <img class="mv-dynamic mv-item-image img-fluid">
+                        <div class="mv-dynamic mv-item-description py-3 d-md-none"></div>
+                    </div>
+                    <div class="d-none d-md-block col-9">
+                        <h3><span class="mv-dynamic mv-item-name" data-ref="{{ mv_ref }}"></span></h3>
+                        <div class="mv-dynamic mv-item-description py-3"></div>
                     </div>
                 </div>
             </div>
