@@ -44,6 +44,10 @@ else{
 
             $controller = "free";
         }
+        elseif(strpos(" ".$controller, "signup")){
+
+            $controller = "signup";
+        }
 
         $path = "{$_SERVER["DOCUMENT_ROOT"]}/../_controllers/{$controller}.php";
 
