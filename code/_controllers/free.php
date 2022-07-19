@@ -15,6 +15,7 @@ $twigData["seo"]["image"] = $seoImage;
 $twigData["seo"]["canonical"] = "https://www.jimpirrie.com/blog/free/{$parts["2"]}?mvsr={$_GET["mvsr"]}";
 
 $twigData["mv_ref"] = $parts[2];
+$twigData["mv_sr"] = $_GET["mvsr"];
 $twigData["tomorrow"] = $tomorrow;
 $twigData["dayAfterTomorrow"] = $dayAfterTomorrow;
 
