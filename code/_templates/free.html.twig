@@ -31,8 +31,17 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <div id="mv-fulfilment" data-itemref="{{ mv_ref }}">fulfilment</div>
+                <div class="col pt-5">
+                    <div class="m-auto text-center" style="border: solid lightgray 1px; border-radius: 5px; max-width: 600px;">
+                        <p>
+                            <span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span>
+                        </p>
+                        <p>
+                            <span class="mv-dynamic mv-item-name" data-itemref="{{ mv_ref }}"></span>
+                        </p>
+                        <div id="mv-fulfilment pt-5" data-itemref="{{ mv_ref }}">fulfilment</div>
+                    </div>
+
                 </div>
             </div>
         </div>
