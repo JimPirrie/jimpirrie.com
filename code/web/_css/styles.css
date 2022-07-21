@@ -5,6 +5,10 @@ body{
     font-family: 'open sans',sans-serif;
 }
 
+p{
+    overflow: hidden; /* prevents text wrapping round floated image */
+}
+
 h1{
 
     padding-top: 40px;
