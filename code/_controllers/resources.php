@@ -4,6 +4,6 @@ $twigData["seo"]["title"] = "Professional Development Coaching | Jim Pirrie Coac
 $twigData["seo"]["description"] = "";
 $twigData["seo"]["image"] = "";
 
-$twigData["mv"] = file_get_contents("https://jimpirrie.mvault.net/embed/dynamicContentServer.php?ref=all");
+$twigData["mv"] = json_decode(file_get_contents("https://jimpirrie.mvault.net/embed/dynamicContentServer.php?ref=all"), 1);
 
 $twigData["active"]["resources"] = "active";
