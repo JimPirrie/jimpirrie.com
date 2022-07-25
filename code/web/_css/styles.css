@@ -573,24 +573,6 @@ li{
     width: 25%;
 }
 
-/* This creates a space to insert the pullout content into the flow of the text that follows */
-.pulloutContainer:before {
-    content: '' ;
-    display:block;
-    float: right;
-    /* The height is essentially a "margin-top" to push the pullout Container down page */
-    height: 200px;
-}
-
-.pulloutContainer q {
-    float:right;
-    clear:both;
-    /* This can be a set width or percent, if you want a pullout that floats left or right or full full width */
-    width: 30%;
-    /* Add padding as you see fit */
-    padding: 50px 20px;
-}
-
 /* X-Large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
 
