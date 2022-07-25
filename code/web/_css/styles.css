@@ -558,6 +558,21 @@ li{
     color: lightgray !important;
 }
 
+.bottomRightImageContainer:before{
+
+    content: '';
+    dosplay: block;
+    float: right;
+    height: 200px;
+}
+
+.bottomRightImageContainer img{
+
+    float: left;
+    clear: both;
+    width: 25%;
+}
+
 /* X-Large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
 
