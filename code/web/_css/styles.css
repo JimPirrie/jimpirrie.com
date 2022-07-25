@@ -568,7 +568,7 @@ li{
 
 .bottomRightImageContainer img{
 
-    float: left;
+    float: right;
     clear: both;
     width: 25%;
 }
