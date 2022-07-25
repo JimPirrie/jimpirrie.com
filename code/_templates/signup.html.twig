@@ -66,10 +66,10 @@
             <div class="col pt-5">
                 <div class="m-auto p-5" style="max-width: 600px; border: solid gray 1px; border-radius: 5px;">
                     <p class="fw-bold text-center">
-                        <span class="mv-dynamic mv-item-name" data-itemref="{{ mv_ref }}"></span>
+                        {{ mv.item.name }}
                     </p>
                     <p class="text-center">
-                        Get instant access to this <span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span> - pop your best email address in the form...
+                        Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
                     </p>
                     <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
                 </div>
