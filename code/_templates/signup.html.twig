@@ -4,15 +4,15 @@
     <div class="row">
         <div class="col page-banner" style="height: 300px;background-image: url('/_images/carousel-waterfall.png');">
             <div class="page-banner-content">
-                <h4 class="pt-5"><span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span></h4>
-                <h1 class="pt-2"><span class="mv-dynamic mv-item-name" data-itemref="{{ mv_ref }}"></span></h1>
+                <h4 class="pt-5">{{ mv.item.descriptor }}</h4>
+                <h1 class="pt-2">{{ mv.item.name }}</h1>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8 pt-3" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                <a href="/">home</a> <i class="fa-regular fa-arrow-right-long"></i> free <i class="fa-regular fa-arrow-right-long"></i> signup <i class="fa-regular fa-arrow-right-long"></i> <strong><span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span>: <span class="mv-dynamic mv-item-name" data-itemref="{{ mv_ref }}"></span></strong>
+                <a href="/">home</a> <i class="fa-regular fa-arrow-right-long"></i> free <i class="fa-regular fa-arrow-right-long"></i> signup <i class="fa-regular fa-arrow-right-long"></i> <strong>{{ mv.item.descriptor }}: {{ mv.item.name }}</strong>
             </div>
             <div class="col-12 col-lg-4">
                 <table class="float-end">
@@ -30,17 +30,17 @@
         </div>
         <div class="row">
             <div class="col">
-                <h4 class="pb-0 pt-5"><span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span>:</h4>
-                <h1 class="p-0"><span class="mv-dynamic mv-item-name" data-itemref="{{ mv_ref }}"></span></h1>
+                <h4 class="pb-0 pt-5">{{ mv.item.descriptor }}:</h4>
+                <h1 class="p-0">{{ mv.item.name }}</h1>
             </div>
         </div>
         <div class="row">
             <div class="col col-md-5">
-                <div class="mv-dynamic mv-item-image"></div>
-                <div class="mv-dynamic mv-item-description py-3 d-md-none"></div>
+                <img src="{{ mv.item.poster_image.url }}">
+                <div class="py-3 d-md-none">{{ mv.item.description }}</div>
             </div>
             <div class="d-none d-md-block col-7">
-                <div class="mv-dynamic mv-item-description py-3 fw-bold"></div>
+                <div class="py-3 fw-bold">{{ mv.item.description }}</div>
             </div>
         </div>
         <div class="row">
@@ -50,7 +50,7 @@
                         {{ mv.item.name }}
                     </p>
                     <p class="text-center">
-                        Get instant access to this <span class="mv-dynamic mv-item-type" data-itemref="{{ mv_ref }}"></span> - pop your best email address in the form...
+                        Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
                     </p>
                     <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
                 </div>
