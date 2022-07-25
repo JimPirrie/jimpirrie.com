@@ -38,28 +38,21 @@
         <div class="row">
             <div class="col">
                 <div class="p-5" style="background-color: dodgerblue; border: solid gray 1px; border-radius: 10px; width: 100%;">
-                    <table>
-                        <tr class="d-md-none">
-                            <td style="height: 50%;">
-                                <img class="img-fluid" src="{{ mv.item.images.poster.url }}" style="background-color: white;">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="background-image: url('{{ mv.item.images.poster.url }}'); background-color: white; background-size: cover; background-position: center;">
-                            </td>
-                            <td style="width: 50%;min-width: 400px;">
-                                <div>
-                                    <p class="fw-bold text-center">
-                                        {{ mv.item.name }}
-                                    </p>
-                                    <p class="text-center">
-                                        Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
-                                    </p>
-                                    <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="row">
+                        <div class="col" style="background-image: url('{{ mv.item.images.poster.url }}'); background-color: white; background-size: cover; background-position: center;">
+                        </div>
+                        <div class="col">
+                            <div>
+                                <p class="fw-bold text-center">
+                                    {{ mv.item.name }}
+                                </p>
+                                <p class="text-center">
+                                    Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
+                                </p>
+                                <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
