@@ -39,9 +39,12 @@
             <div class="col">
                 <div class="p-5" style="background-color: dodgerblue; border: solid gray 1px; border-radius: 10px; width: 100%;">
                     <table>
-                        <tr>
-                            <td style="background-image: url('{{ mv.item.images.poster.url }}'); background-color: white; background-size: cover; background-position: center;">
+                        <tr class="d-md-none">
+                            <td>
+                                <img src="{{ mv.item.images.poster.url }}" style="background-color: white;">
                             </td>
+                        </tr>
+                        <tr>
                             <td style="width: 50%;min-width: 400px;">
                                 <div>
                                     <p class="fw-bold text-center">
