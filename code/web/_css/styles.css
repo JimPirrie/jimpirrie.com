@@ -583,7 +583,7 @@ li{
 }
 
 .pulloutContainer q {
-    float:left;
+    float:right;
     clear:both;
     /* This can be a set width or percent, if you want a pullout that floats left or right or full full width */
     width: 30%;
