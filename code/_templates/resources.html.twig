@@ -79,38 +79,40 @@
                 {% include("forms/form-addthis-follow-large-center.html.twig") %}
             </div>
         </div>
-        <div class="row mv-leadmagnet" style="padding-top: 100px;">
-            <div class="col" style="padding: 0 5% 0 5%; border: solid gray 1px; border-radius: 10px;">
-                <div class="row">
-                    <div class="col text-end py-2">
-                        <a href="#list">top</a>
+        {% for thing in mv.items %}
+            <div class="row" style="padding-top: 100px;">
+                <div class="col" style="padding: 0 5% 0 5%; border: solid gray 1px; border-radius: 10px;">
+                    <div class="row">
+                        <div class="col text-end py-2">
+                            <a href="#list">top</a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col px-4 d-md-none">
-                        <span class="mv-item-type"></span>
+                    <div class="row">
+                        <div class="col px-4 d-md-none">
+                            {{ thing.descriptor }}
+                        </div>
                     </div>
-                </div>
-                <div class="row px-2 pb-5 px-md-5">
-                    <div class="col col-md-3">
-                        <h3 class="d-md-none"><span class="mv-item-name"></span></h3>
-                        <div class="mv-item-image"></div>
-                        <div class="mv-item-description py-3 d-md-none"></div>
-                        <a href="" class="d-md-none">more...</a>
-                    </div>
-                    <div class="d-none d-md-block col-9">
-                        <h3><span class="mv-item-name" data-itemref="{{ mv_ref }}"></span></h3>
-                        <p class="pb-0">
-                            <span class="mv-item-type"></span>
-                        </p>
-                        <div class="mv-item-description pb-3"></div>
-                        <div class="text-end">
-                            <a class="mv-item-signup" href="">more...</a>
+                    <div class="row px-2 pb-5 px-md-5">
+                        <div class="col col-md-3">
+                            <h3 class="d-md-none">{{ thing.name }}</h3>
+                            <img class="img-fluid" src="{{ thing.poster_image.url }}">
+                            <div class="py-3 d-md-none">{{ thing.description }}</div>
+                            <a href="{{ thing.signup_page_url }}" class="d-md-none">more...</a>
+                        </div>
+                        <div class="d-none d-md-block col-9">
+                            <h3>{{ thing.name }}</h3>
+                            <p class="pb-0">
+                                {{ thing.descriptor }}
+                            </p>
+                            <div class="pb-3">{{ thing.description }}</div>
+                            <div class="text-end">
+                                <a href="{{ thing.signup_page_url }}">more...</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
     <div style="height: 200px;"></div>
 {% endblock %}
