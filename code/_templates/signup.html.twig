@@ -41,10 +41,12 @@
                     <table>
                         <tr class="d-md-none">
                             <td>
-                                <img src="{{ mv.item.images.poster.url }}" style="background-color: white;">
+                                <img class="img-fluid" src="{{ mv.item.images.poster.url }}" style="background-color: white;">
                             </td>
                         </tr>
                         <tr>
+                            <td style="background-image: url('{{ mv.item.images.poster.url }}'); background-color: white; background-size: cover; background-position: center;">
+                            </td>
                             <td style="width: 50%;min-width: 400px;">
                                 <div>
                                     <p class="fw-bold text-center">
