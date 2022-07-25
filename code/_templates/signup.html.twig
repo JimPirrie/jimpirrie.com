@@ -38,20 +38,25 @@
         <div class="row">
             <div class="col">
                 <div style="background-color: dodgerblue; border: solid gray 1px; border-radius: 10px; width: 100%;">
-                    <div class="float-right">
-                        <p class="fw-bold text-center">
-                            {{ mv.item.name }}
-                        </p>
-                        <p class="text-center">
-                            Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
-                        </p>
-                        <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
-                    </div>
-                    <img class="img-fluid" src="{{ mv.item.images.poster.url }}">
+                    <table>
+                        <tr>
+                            <td>
+                                <img class="img-fluid" src="{{ mv.item.images.poster.url }}">
+                            </td>
+                            <td style="width: 50%;min-width: 600px;">
+                                <div>
+                                    <p class="fw-bold text-center">
+                                        {{ mv.item.name }}
+                                    </p>
+                                    <p class="text-center">
+                                        Get instant access to this {{ mv.item.descriptor}} - pop your best email address in the form...
+                                    </p>
+                                    <div class="mv-form" data-itemRef="{{ mv_ref }}" data-formtype="2" data-btnclass="mv-btn-primary">yes - I want this...</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-
-            </div>
-            <div class="d-none d-md-block col-7">
             </div>
         </div>
         <div class="row">
